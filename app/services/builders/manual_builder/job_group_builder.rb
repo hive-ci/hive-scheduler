@@ -1,7 +1,6 @@
 module Builders
   class ManualBuilder < Builders::Base
     class JobGroupBuilder < Builders::JobGroupBuilderBase
-
       attribute :queue, String
 
       validates_presence_of :queue

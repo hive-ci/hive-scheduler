@@ -3,8 +3,8 @@ class Script < ActiveRecord::Base
 
   belongs_to :target
   has_many   :projects
-  has_many   :target_fields, class_name: "Field", through: :target
-  has_many   :execution_variables, as: :owner, class_name: "Field", dependent: :destroy
+  has_many   :target_fields, class_name: 'Field', through: :target
+  has_many   :execution_variables, as: :owner, class_name: 'Field', dependent: :destroy
 
   validates :target, presence: true
 

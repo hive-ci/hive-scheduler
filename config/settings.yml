@@ -8,20 +8,20 @@ defaults: &defaults
     encoding: utf8
     host: localhost
     username: root
-    password:
-    database: hive_test
+    password: root
+    database: hive_ci
     port: 3306
     pool: 5
   job_reservation_timeout: <%= 20.seconds %>
   stuck_running_jobs_timeout: <%= 5.hours %>
   maximum_auto_retries: 1
   hive_mind:
-    url:
-    cert: 
-    cacert:
-    verify_mode:
-  testmite:
-    url: http://testmite.url
+    url: http://localhost:3001
+    # cert:
+    # cacert:
+    # verify_mode:
+  testmine:
+    url: http://localhost:3002
   test_rail:
     #testrail_account_one:
     #  user:
@@ -45,13 +45,10 @@ defaults: &defaults
 
 development:
   <<: *defaults
-  database:
-    adapter: sqlite3
-    database: db/test_database.sql
   better_errors_for_all: true
   hive_mind:
     url: http://localhost:3001
-  testmite:
+  testmine:
     url: http://localhost:3002
   attachment:
     storage: filesystem
@@ -60,13 +57,10 @@ development:
 
 test:
   <<: *defaults
-  database:
-    adapter: sqlite3
-    database: db/test_database.sql
   better_errors_for_all: true
   hive_mind:
     url: http://localhost:3001
-  testmite:
+  testmine:
     url: http://localhost:3002
   test_rail:
     test_testrail_account:
@@ -83,7 +77,7 @@ test:
     - { label: 'iPlayer', link: 'http://www.bbc.co.uk/iplayer' }
     - 'divider'
     - { label: 'Queues', link: '/queues' }
-    - { label: 'Project #1', link: '/projects/1' }
+    - { label: 'Project 1', link: '/projects/1' }
     - { label: 'Page 7 of batches', link: '/?page=7' }
 
 production:

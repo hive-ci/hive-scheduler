@@ -3,13 +3,14 @@ class Job < ActiveRecord::Base
     extend ActiveSupport::Concern
 
     included do
-
       state_machine :state, initial: :queued do
-
         after_transition to: :reserved do |job, transition|
           reservation_details = transition.args.first
-          job.update(reserved_at: Time.now, reservation_details: reservation_details)
-          JobCommands::JobReservationCheck.new.async.check_in(Chamber.env.job_reservation_timeout+1.second, job.id)
+
+          job.update(reserved_at: Time.now,
+                     reservation_details: reservation_details)
+
+          JobCommands::JobReservationCheck.new.async.check_in(Chamber.env.job_reservation_timeout + 1.second, job.id)
         end
 
         after_transition to: :preparing do |job, transition|
@@ -19,18 +20,18 @@ class Job < ActiveRecord::Base
         end
 
         before_transition to: :preparing, do: :move_queued_to_running
-                
-        before_transition to: :preparing do |job, transition|
+
+        before_transition to: :preparing do |_job, transition|
           device_id = transition.args.first
           JobCommands::StuckJobsForDeviceChecker.new(device_id: device_id).perform
         end
-        
+
         before_transition to: :analyzing do |job, transition|
           exit_value = transition.args.first
           job.update(script_end_time: Time.now)
           job.update(exit_value: exit_value)
         end
-        
+
         before_transition to: :errored do |job, transition|
           message = transition.args.first
           job.move_all_to_errored
@@ -49,21 +50,17 @@ class Job < ActiveRecord::Base
           job.update(script_start_time: Time.now)
         end
 
-        after_transition to: [:complete, :errored] do |job|
-          job.update(script_end_time: Time.now) if !job.script_end_time
+        after_transition to: %i[complete errored] do |job|
+          job.update(script_end_time: Time.now) unless job.script_end_time
           job.update(end_time: Time.now)
         end
 
-        before_transition to: :complete do |job|
-          job.calculate_result
+        before_transition to: :complete, &:calculate_result
+
+        after_transition to: %i[complete errored] do |job|
+          JobCommands::AutoJobRetrier.new(job: job).perform if job.can_retry?
         end
-        
-        after_transition to: [:complete, :errored] do |job|
-          if job.can_retry?
-            JobCommands::AutoJobRetrier.new(job: job).perform
-          end
-        end
-        
+
         after_transition to: :cancelled, do: :move_all_to_errored
 
         event :reserve do
@@ -73,7 +70,7 @@ class Job < ActiveRecord::Base
         event :unreserve do
           transition reserved: :queued
         end
-        
+
         event :prepare do
           transition reserved: :preparing, if: :reservation_valid?
         end
@@ -81,7 +78,7 @@ class Job < ActiveRecord::Base
         event :start do
           transition preparing: :running
         end
-        
+
         event :end do
           transition running: :analyzing
         end
@@ -93,17 +90,15 @@ class Job < ActiveRecord::Base
         event :error do
           transition all => :errored
         end
-        
+
         event :cancel do
-          transition [:queued, :reserved] => :cancelled
+          transition %i[queued reserved] => :cancelled
         end
-        
+
         event :uncancel do
           transition cancelled: :queued
         end
-        
       end
-
     end
   end
 end

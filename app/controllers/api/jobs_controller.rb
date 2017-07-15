@@ -4,21 +4,22 @@ class Api::JobsController < Api::ApiController
 
   rescue_from ActiveRecord::RecordNotFound, with: :render_job_not_found
 
-  before_filter :fetch_job, except: [:reserve, :update_results]
+  before_filter :fetch_job, except: %i[reserve update_results]
 
   def show
     render_job_as_message(@job)
   end
 
   # Methods that cause a job state transition
-  
+
   def reserve
-    queue_names = params[:queue_names].split(",")
+    queue_names         = params[:queue_names].split(',')
     reservation_details = params[:reservation_details]
-    
-    Worker.identify( reservation_details, queue_names )
-    
-    job = JobCommands::JobReservation.new(queue_names: queue_names, reservation_details: reservation_details).perform
+
+    Worker.identify(reservation_details, queue_names)
+
+    job = JobCommands::JobReservation.new(queue_names: queue_names,
+                                          reservation_details: reservation_details).perform
     if job.present?
       render_job_as_message(job)
     else
@@ -97,6 +98,11 @@ class Api::JobsController < Api::ApiController
   end
 
   def job_result_params
-    params.permit(:running_count, :passed_count, :failed_count, :errored_count, :job_id, :result_details)
+    params.permit(:running_count,
+                  :passed_count,
+                  :failed_count,
+                  :errored_count,
+                  :job_id,
+                  :result_details)
   end
 end

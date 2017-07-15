@@ -10,21 +10,19 @@ class Api::BatchesController < Api::ApiController
     target_information = params[:target_information]
     # The values for these can be comma separated to make posting from cURL and clients easier
     execution_variables = params[:execution_variables] || {}
-    execution_variables["tests_per_job"] = tests_per_job unless execution_variables["tests_per_job"].present?
+    execution_variables['tests_per_job'] = tests_per_job unless execution_variables['tests_per_job'].present?
     batch_params = params[:batch] || {}
-    batch_params[:generate_name] = not(batch_params[:name].present?)
+    batch_params[:generate_name] = !batch_params[:name].present?
 
     @batch = BatchCommands::BuildBatchCommand.build(
-      batch_params.merge({
-        project_id:          @project.id,
-        version:             version,
-        build:               build,
-        tests_per_job:       tests_per_job,
-        target_information:  target_information,
-        execution_variables: execution_variables
-      })
+      batch_params.merge(project_id:          @project.id,
+                         version:             version,
+                         build:               build,
+                         tests_per_job:       tests_per_job,
+                         target_information:  target_information,
+                         execution_variables: execution_variables)
     )
-    
+
     if @batch.save
       respond_with @batch, represent_with: BatchRepresenter
     else
@@ -44,26 +42,25 @@ class Api::BatchesController < Api::ApiController
   def index
     page     = params[:page] || 1
     per_page = params[:per_page] || 20
-    batches  = Batch.includes(:project).paginate(page: page, per_page: per_page).order("created_at desc").to_a
+    batches  = Batch.includes(:project).paginate(page: page, per_page: per_page).order('created_at desc').to_a
     respond_with batches, represent_items_with: BatchRepresenter
   end
 
   def download_build
     @batch = Batch.find_by_id(params[:batch_id])
-    if params['file_name'].nil?
-      build = @batch.assets.first
-    else
-      build = @batch.assets.where(file: params["file_name"]).first
-    end
-    redirect_to build.asset.expiring_url(10*60)
+    build = if params['file_name'].nil?
+              @batch.assets.first
+            else
+              @batch.assets.where(file: params['file_name']).first
+            end
+    redirect_to build.asset.expiring_url(10 * 60)
   end
 
   private
 
   def fetch_project
     @project = Project.find_by_id(params[:project_id])
-    unless @project
-      render status: :not_found, json: { errors: [t('.project_not_found')] }
-    end
+
+    render status: :not_found, json: { errors: [t('.project_not_found')] } unless @project
   end
 end

@@ -3,7 +3,6 @@ class Job < ActiveRecord::Base
     extend ActiveSupport::Concern
 
     included do
-
       validates :queued_count,  numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
       validates :running_count, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
       validates :passed_count,  numericality: { greater_than_or_equal_to: 0 }, allow_nil: true

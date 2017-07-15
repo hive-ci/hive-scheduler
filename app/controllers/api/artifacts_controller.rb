@@ -1,4 +1,4 @@
-class Api::ArtifactsController <  Api::ApiController
+class Api::ArtifactsController < Api::ApiController
   include Roar::Rails::ControllerAdditions
   respond_to :json
 
@@ -18,7 +18,7 @@ class Api::ArtifactsController <  Api::ApiController
   private
 
   def render_artifact_as_message(artifact)
-    @artifact_message = Hive::Messages::Artifact.new(artifact.attributes.merge({artifact_id: artifact.id}))
+    @artifact_message = Hive::Messages::Artifact.new(artifact.attributes.merge(artifact_id: artifact.id))
     render json: @artifact_message
   end
 

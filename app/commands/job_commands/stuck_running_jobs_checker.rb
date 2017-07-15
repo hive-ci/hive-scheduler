@@ -1,13 +1,10 @@
 module JobCommands
-
   class StuckRunningJobsChecker
     include SuckerPunch::Job
 
     def perform
       ActiveRecord::Base.connection_pool.with_connection do
-        Job.running.where("start_time <= ?", Time.now-Chamber.env.stuck_running_jobs_timeout).each do |job|
-          job.error
-        end
+        Job.running.where('start_time <= ?', Time.now - Chamber.env.stuck_running_jobs_timeout).each(&:error)
       end
     end
 

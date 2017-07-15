@@ -3,7 +3,6 @@ class Batch < ActiveRecord::Base
     extend ActiveSupport::Concern
 
     included do
-
       validates :name, :version, presence: true
       validates_associated :project
     end

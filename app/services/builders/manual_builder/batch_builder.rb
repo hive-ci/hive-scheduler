@@ -1,7 +1,6 @@
 module Builders
   class ManualBuilder < Builders::Base
     class BatchBuilder < Builders::BatchBuilderBase
-
       def build_job_groups(batch)
         queues(batch).collect do |queue|
           JobGroupBuilder.build(batch: batch, queue: queue)
@@ -11,7 +10,7 @@ module Builders
       private
 
       def queues(batch)
-        batch.execution_variables["queues"]
+        batch.execution_variables['queues']
       end
 
       def project

@@ -1,55 +1,41 @@
 class Job < ActiveRecord::Base
   module JobResult
     extend ActiveSupport::Concern
-    
-    
+
     def calculate_result
-      
       # Default to errored if no results have been reported
       self.result = 'errored'
-      
+
       # Set initial result using the exit value
-      if self.exit_value
-        if self.exit_value == 0
-          self.result = 'passed'
-        else
-          self.result = 'failed'
-        end
-      end
-      
- 
+      self.result = exit_value.zero? ? 'passed' : 'failed' if exit_value
+
       # If we've got counts, attempt to be a bit smarter
-      if self.errored_count.to_i > 0
+      if errored_count.to_i > 0
         self.result = 'errored'
-      elsif self.failed_count.to_i > 0
+      elsif failed_count.to_i > 0
         self.result = 'failed'
-      elsif self.passed_count.to_i > 0
+      elsif passed_count.to_i > 0
         self.result = 'passed'
       end
-      
-      self.queued_count = 0
+
+      self.queued_count  = 0
       self.running_count = 0
-      self.save
+      save
     end
 
     def move_queued_to_running
-      if test_results
-        test_results.each { |tr| tr.update(status: 'running') }
-      end
-      self.running_count = self.queued_count
+      test_results.each { |tr| tr.update(status: 'running') } if test_results
+      self.running_count = queued_count
       self.queued_count  = 0
-      self.save
+      save
     end
 
     def move_all_to_errored
-      if test_results
-        test_results.each { |tr| tr.update(status: 'errored') }
-      end
-      self.errored_count = self.queued_count.to_i + self.running_count.to_i
+      test_results.each { |tr| tr.update(status: 'errored') } if test_results
+      self.errored_count = queued_count.to_i + running_count.to_i
       self.running_count = 0
       self.queued_count  = 0
-      self.save
+      save
     end
-
   end
 end

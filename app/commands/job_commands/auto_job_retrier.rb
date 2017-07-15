@@ -1,7 +1,5 @@
 module JobCommands
-
   class AutoJobRetrier < Imperator::Command
-
     attribute :job, Job
 
     action do
@@ -17,8 +15,8 @@ module JobCommands
     def total_number_of_retries
       retries = 0
       current_job = job
-      while current_job.original_job.present? do
-        retries = retries+1
+      while current_job.original_job.present?
+        retries += 1
         current_job = current_job.original_job
       end
       retries

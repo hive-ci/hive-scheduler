@@ -1,6 +1,5 @@
 module Builders
   class BatchBuilderBase < Imperator::Command
-
     attribute :project_id
     attribute :name
     attribute :build
@@ -11,7 +10,6 @@ module Builders
     validates_presence_of :project_id, :name, :build, :version
 
     class << self
-
       def build(*args)
         new(*args).perform
       end
@@ -23,7 +21,7 @@ module Builders
       end
     end
 
-    def build_job_groups(batch)
+    def build_job_groups(_batch)
       raise NotImplementedError
     end
 
