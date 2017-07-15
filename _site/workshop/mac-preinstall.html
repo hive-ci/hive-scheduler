@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Workshop prerequisites - Brew for Mac</title>
+  <meta name="description" content="Device-centric CI
+">
+
+  <link rel="stylesheet" href="/hive-ci/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/hive-ci/workshop/mac-preinstall.html">
+  <link rel="alternate" type="application/rss+xml" title="Hive CI | CI for device testing" href="http://localhost:4000/hive-ci/feed.xml" />
+</head>
+
+
+
+<body>
+  <div class="site-wrapper page-image">
+
+    <nav class="navbar navbar-default navbar-fixed-topx">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/hive-ci/index.html">
+        <img src="/hive-ci/images/hive-ci-simple.png" class="nav-logo pull-left" alt="Hive CI interface">
+      </a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/index.html">Home</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/hive-ci.html">Hive CI</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/hive-runner.html">Hive Runner</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/hivemind.html">Hive Mind</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/testmine.html">Test Mine</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/test-tools.html">Test Tools</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/documentation/hive-ci.html">Info</a>
+        </li>
+        
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+    <div class="row">
+      <div class="page-content">
+
+        <div class="col-xs-10 col-md-offset-1 col-xs-offset-1">
+          <h1 id="installing-git-and-brew-on-mac">Installing Git and Brew on Mac</h1>
+
+<p class="lead">Some developer tools need to be installed on Mac.</p>
+
+<h1 id="xcode">Xcode</h1>
+
+<p>This will provide git and gcc. See instructions
+<a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">here.</a> and
+then install the command line tools with:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">xcode-select --install
+sudo codebuild -license</code></pre></figure>
+
+<h1 id="brew">Brew</h1>
+
+<p>Details instructions for installing Brew can be found <a href="http://brew.sh/">here.</a>
+In brief:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">/usr/bin/ruby -e <span class="s2">"</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install<span class="k">)</span><span class="s2">"</span></code></pre></figure>
+
+<h1 id="other-things">Other things</h1>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">brew install gpg
+
+<span class="c"># Mac version of C does not work for building Ruby</span>
+brew install gcc</code></pre></figure>
+
+
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+<div class="col-xs-span-10 footer">
+  <p>BBC Hive is an Open Source BBC project licensed under MIT</p>
+  <p>This site is built with Jekyll and Bootstrap, and hosted on GitHub pages.</p>
+  <p><strong>&copy; 2015 BBC</strong></p>
+</div>
+</div>
+
+
+
+  </div>
+
+
+      <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="/hive-ci/js/bootstrap.min.js">
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="/hive-ci/js/ie10-viewport-bug-workaround.js"></script>
+    
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-63228527-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</body>
+
+</html>

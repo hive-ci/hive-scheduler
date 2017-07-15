@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Test Tools</title>
+  <meta name="description" content="Device-centric CI
+">
+
+  <link rel="stylesheet" href="/hive-ci/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/hive-ci/test-tools.html">
+  <link rel="alternate" type="application/rss+xml" title="Hive CI | CI for device testing" href="http://localhost:4000/hive-ci/feed.xml" />
+</head>
+
+
+
+<body>
+  <div class="site-wrapper page-image">
+
+    <nav class="navbar navbar-default navbar-fixed-topx">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/hive-ci/index.html">
+        <img src="/hive-ci/images/hive-ci-simple.png" class="nav-logo pull-left" alt="Hive CI interface">
+      </a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/index.html">Home</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/hive-ci.html">Hive CI</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/hive-runner.html">Hive Runner</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/hivemind.html">Hive Mind</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/testmine.html">Test Mine</a>
+        </li>
+        
+        
+        
+        <li class="active">
+          <a class="active" href="/hive-ci/test-tools.html">Test Tools</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/documentation/hive-ci.html">Info</a>
+        </li>
+        
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+    <div class="row">
+      <div class="page-content">
+
+        <div class="col-xs-10 col-md-offset-1 col-xs-offset-1">
+          <h1 id="test-tools">Test Tools</h1>
+
+<p class="lead">Tools and libraries released under the BBC Hive open source project</p>
+
+<p><br /></p>
+
+<h2 id="bbc-hive-open-source">BBC Hive Open Source</h2>
+
+<p><em>BBC Hive</em> is a <em>BBC Digital</em> initiative to contribute open source tools and
+libraries to the open source community. This page provides an overview of
+the projects that fall under this open source banner. They’re all hosted on
+github and <a href="/hive-ci/license.html">MIT licensed</a>.</p>
+
+<hr />
+
+<h3 id="deviceapi">DeviceAPI</h3>
+
+<p><em>DeviceAPI</em> is a collection of gems that make working with physical devices
+easy and consistent. <em>DeviceAPI</em> provides common utilities such as device
+detection and identification, and useful helpers for installing applications
+and identifying problems with devices.</p>
+
+<p>We use <em>DeviceAPI</em> heavily to leverage devices in <em>Hive CI</em>. It’s also used by
+our test developers in their test code. It’s our interface to the devices we
+test against and is where we put all common code for interacting with our
+physical devices. It also provides an abstraction so we can deal with devices
+interchangeably.</p>
+
+<hr />
+
+<h4 id="deviceapi-android">DeviceAPI-Android</h4>
+
+<p><em>DeviceAPI-Android</em> is the <em>DeviceAPI</em> implementation for Android devices. It
+uses the <a href="https://developer.android.com/sdk">Android SDK</a> command line tools
+for interacting with connected devices:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>device = DeviceAPI::Android.devices.first
+
+device.model                        #=&gt; 'samsung gt-i9100'
+device.orientation                  #=&gt; :portrait
+device.install('path/to/build.apk') #=&gt; true
+</code></pre>
+</div>
+
+<p>In addition to detecting and identifying physical devices, <em>DeviceAPI-Android</em>
+handles functions like:</p>
+
+<ul>
+  <li>managing keystores and signing apps</li>
+  <li>installing and deleting applications</li>
+  <li>managing orientation and settings</li>
+  <li>capturing screenshots</li>
+  <li>performing cleanup operations</li>
+  <li>executing monkey testing</li>
+</ul>
+
+<p><br />
+<a class="btn btn-default" href="https://github.com/bbc/device_api-android">Code</a>
+<a class="btn btn-default" href="https://rubygems.org/gems/device_api-android">Gems</a>
+<a class="btn btn-default" href="http://www.rubydoc.info/github/bbc/device_api-android/master">Docs</a></p>
+
+<hr />
+
+<h4 id="deviceapi-ios">DeviceAPI-IOS</h4>
+
+<p><em>DeviceAPI-IOS</em> is the iOS implementation of <em>DeviceAPI</em>. It uses
+<em><a href="http://www.libimobiledevice.org/">libimobiledevice</a></em> for interacting with
+connected devices.</p>
+
+<p>This gem offers most of the same features as the Android version. The API 
+is identical where possible:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>device = DeviceAPI::IOS.devices.first
+
+device.model      #=&gt; 'iPad mini 3'
+</code></pre>
+</div>
+
+<p><br />
+<button class="btn btn-default"><a href="https://github.com/bbc/device_api-ios">Code</a></button>
+<button class="btn btn-default"><a href="https://rubygems.org/gems/device_api-ios">Gem</a></button>
+<button class="btn btn-default"><a href="http://www.rubydoc.info/github/bbc/device_api-ios/master">Docs</a></button></p>
+
+<hr />
+
+<h4 id="deviceapi-base-gem">DeviceAPI Base gem</h4>
+
+<p>Shared code for the <em>DeviceAPI</em> gems lives in this base gem. If you want to
+write a <em>DeviceAPI</em> gem for a new type of device (say a smart fridge or mass
+spectrometer) you should take a look at the base gem documentation.</p>
+
+<p><br />
+<button class="btn btn-default"><a href="https://github.com/bbc/device_api">Code</a></button>
+<button class="btn btn-default"><a href="https://rubygems.org/gems/device_api">Gem</a></button>
+<button class="btn btn-default"><a href="http://www.rubydoc.info/github/bbc/device_api/master">Docs</a></button></p>
+
+<hr />
+
+<h4 id="res">Res</h4>
+
+<p>Res is a set of formatting and parsing tools for test results. Res is key to how Hive CI
+understands and interprets tests. We use lots of different test runners that all produce different
+test output formats. We use res as a standard test result format making it easier to report our
+tests into the different tools that teams use.</p>
+
+<p><br />
+<button class="btn btn-default"><a href="https://github.com/bbc/res">Code</a></button>
+<button class="btn btn-default"><a href="https://rubygems.org/gems/res">Gem</a></button></p>
+
+<hr />
+
+<h3 id="lava----libraries-for-audio-video-analysis">LAVA – Libraries for Audio Video Analysis</h3>
+
+<p>LAVA are libraries for capturing and performing analysis on device-video playback.
+We use LAVA in combination with the <a href="#device_api">device_api</a> gem to capture screenshots during
+video playback tests and confirm that video is actually being played.</p>
+
+<p>LAVA uses ImageMagick to do the actual image analysis, but presents a simple
+interface lets you concentrate on writing your tests.</p>
+
+<p>It also generates animated gifs of the testing session, so we can visibly check
+any problems the tests find.</p>
+
+<p><br />
+<button class="btn btn-default"><a href="https://github.com/bbc/lava-frame-compare">Video</a></button>
+<button class="btn btn-default"><a href="https://github.com/bbc/lava-audio">Audio</a></button></p>
+
+<hr />
+
+<h3 id="simple-stats-store">Simple stats store</h3>
+
+<p>Simple Stats Store is a ruby gem that provides a simple and lightweight method
+of sharing an SQLite database without contention.</p>
+
+<p>It is appropriate to be used when:</p>
+
+<ul>
+  <li>there are multiple threads or processes submitting data to a single SQLite
+database</li>
+  <li>data concurrency is less important than avoiding waiting on database locks</li>
+</ul>
+
+<p>Rather than hold a database lock, any processes wanting to write to the
+database drop a uniquely named file to a directory containing the data. These
+files are picked up by a single thread that is the sole accessor of the
+database.</p>
+
+<p><br />
+<button class="btn btn-default"><a href="https://github.com/bbc/simple_stats_store">Github</a></button>
+<button class="btn btn-default"><a href="https://rubygems.org/gems/simple_stats_store">Rubygems</a></button>
+<button class="btn btn-default"><a href="http://www.rubydoc.info/gems/simple_stats_store">Documentation</a></button></p>
+
+<hr />
+
+
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+<div class="col-xs-span-10 footer">
+  <p>BBC Hive is an Open Source BBC project licensed under MIT</p>
+  <p>This site is built with Jekyll and Bootstrap, and hosted on GitHub pages.</p>
+  <p><strong>&copy; 2015 BBC</strong></p>
+</div>
+</div>
+
+
+
+  </div>
+
+
+      <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="/hive-ci/js/bootstrap.min.js">
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="/hive-ci/js/ie10-viewport-bug-workaround.js"></script>
+    
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-63228527-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</body>
+
+</html>

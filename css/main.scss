@@ -1,0 +1,142 @@
+---
+---
+
+@import "bootstrap";
+
+$bg-colour: white;
+$strip-colour: rgb(230,230,230);
+
+html,
+body {
+  height: 100%;
+}
+
+p, li {
+  font-size: 16px;
+}
+
+hr {
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+
+.site-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.cover-image {
+  min-height: 430px;
+  width: 100%;
+  background: url("/hive-ci/images/hiveci-landing-4.png") no-repeat center top;
+}
+
+.page-image {
+  min-height: 100%;
+}
+
+.page-content {
+  padding-top: 50px;
+}
+
+.label-grey {
+  background-color: rgba(187,185,193, 0.7);
+}
+
+/*
+ * Navbar
+ */
+.navbar {
+  color: white;
+  opacity: 0.8;
+  margin-bottom: 0px;
+
+  .nav-logo {
+    max-width: 120px;
+    padding: 5px;
+  }
+}
+
+
+/*
+ * Topic headers
+ */
+.topic-highlight {
+  margin-top: 50px;
+  padding: 50px;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+
+/*
+ * Front banner
+ */
+.banner-highlight {
+  padding-top: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  background-color: $hive-red;
+  color: rgb(0,0,0);
+}
+
+.banner-left {
+  text-align: right;
+  text-transform: uppercase;
+  border-right: 5px;
+  border-right-style: solid;
+  border-right-color: rgb(255,255,255);
+}
+
+.banner-right {
+  padding-left: 20px;
+  text-align: left;
+}
+
+.cover-row {
+  margin-top: 70px;
+  padding-bottom: 20px;
+}
+
+.cover-row h1, .cover-row p {
+  text-align: center;
+}
+
+.image-strip {
+  width: 100%;
+  height: 250px;
+}
+
+.cover-shaded {
+  border: black;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+
+.footer {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-top: 50px;
+  text-align: center;
+}
+
+.footer p {
+  font-size: 13px;
+}
+
+.label-fullwidth {
+  width: 1000px;
+}
+
+.nav-compact li a{
+  font-size: 15px;
+  padding: 5px 10px 5px 10px;
+  background-color: rgb(240,240,240);
+  background-color: rgba(100,100,100, 0.1);
+}
+
+
+.dl-spaced dd {
+  margin-bottom: 10px
+}

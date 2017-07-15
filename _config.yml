@@ -1,0 +1,57 @@
+# Site settings
+title: Hive CI | CI for device testing
+description: >
+  Device-centric CI
+sass:
+  sass_dir: _sass
+
+baseurl: /hive-ci
+
+# Build settings
+markdown: kramdown
+
+collections:
+  documentation:
+    output: true
+
+navigation:
+  - text: Home
+    url: index.html
+    pages:
+      - /index.html
+  - text: Hive CI
+    url: hive-ci.html
+    pages:
+      - /hive-ci.html
+  - text: Hive Runner
+    url: hive-runner.html
+    pages:
+      - /hive-runner.html
+  - text: Hive Mind
+    url: hivemind.html
+    pages:
+      - /hivemind.html
+  - text: Test Mine
+    url: testmine.html
+    pages:
+      - /testmine.html
+  - text: Test Tools
+    url: test-tools.html
+    pages:
+      - /test-tools.html
+  - text: Info
+    url: documentation/hive-ci.html
+    pages:
+      - /documentation/hive-ci.html
+      - /documentation/getting-started.html
+      - /documentation/installing-hive-scheduler.html
+      - /documentation/android-hive.html
+      - /documentation/ios-hive.html
+      - /documentation/installing-runners.html
+      - /documentation/running-your-tests.html
+      - /documentation/smart-retries.html
+      - /documentation/faq.html
+
+
+kramdown:
+  input: GFM

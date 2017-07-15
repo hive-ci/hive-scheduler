@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% include head.html %}
+
+<body>
+  <div class="site-wrapper">
+
+    <div class="cover-image">
+
+      {% include navbar.html %}
+
+    </div>
+
+
+    <div class="row">
+      <div class="cover-content">
+        {{ content }}
+      </div>
+    </div>
+
+    {% include footer.html %}
+  </div>
+
+
+  {% include scripts.html %}
+
+</body>
+
+</html>

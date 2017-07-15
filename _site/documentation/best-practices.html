@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Best Practices</title>
+  <meta name="description" content="This page contains some notes of experience we have found in setting up and using the Hive. Your experiences may vary and we welcome feedback to improve this...">
+
+  <link rel="stylesheet" href="/hive-ci/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/hive-ci/documentation/best-practices.html">
+  <link rel="alternate" type="application/rss+xml" title="Hive CI | CI for device testing" href="http://localhost:4000/hive-ci/feed.xml" />
+</head>
+
+
+
+  <body>
+    <div class="site-wrapper page-image">
+
+      <a id='top-of-page'></a>
+      <nav class="navbar navbar-default navbar-fixed-topx">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/hive-ci/index.html">
+        <img src="/hive-ci/images/hive-ci-simple.png" class="nav-logo pull-left" alt="Hive CI interface">
+      </a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/index.html">Home</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/hive-ci.html">Hive CI</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/hive-runner.html">Hive Runner</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/hivemind.html">Hive Mind</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/testmine.html">Test Mine</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/test-tools.html">Test Tools</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/documentation/hive-ci.html">Info</a>
+        </li>
+        
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+
+      <div class="row">
+
+      <div class="page-content">
+        <div class="col-xs-12 col-sm-2">
+          <ul class="nav nav-pills nav-stacked nav-compact">
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/hive-ci.html">Introduction</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/overview.html">Overview</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/setting-up-a-hive.html">Setting up a Hive</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/quick-start.html"> + Quick Start Guide</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/best-practices.html"> + Best Practices</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/examples.html"> + Examples</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/plugins-and-components.html">Plugins</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/android_plugin.html"> + Android Plugin</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/ios_plugin.html"> + iOS Plugin</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/tv_plugin.html"> + TV Plugin</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/device_api.html"> + Device API</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/software-links.html">Software Links</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/glossary.html">Glossary</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/faq.html">FAQ</a>
+                
+              </li>
+            
+          </ul>
+        </div>
+
+
+        <div class="col-xs-12  col-sm-9">
+        <h1>Best Practices</h1>
+        <p class="lead">This page contains some notes of experience we have found in setting up and using the Hive. Your experiences may vary and we welcome feedback to improve this advice.</p>
+
+<h2 id="contents">Contents</h2>
+<ul>
+  <li><a href="#ios-devices">iOS devices</a></li>
+</ul>
+
+<h2 id="ios-devices">iOS devices</h2>
+
+<ul>
+  <li>Turn off notifications.
+    <ul>
+      <li>Notifications can cause UI tests to fail so as far as possible these notifications or the services that cause them should be disabled. From the settings menu go to ‘Notifications’ and then for each app turn off notifications.</li>
+    </ul>
+  </li>
+  <li>Turn on developer mode and UI automation.</li>
+  <li>Provision the device.</li>
+  <li>Turn off the screen lock on the device completely.
+    <ul>
+      <li>If the screen lock is set then the device will boot up locked. Therefore it is necessary to unset the screen lock.</li>
+    </ul>
+  </li>
+</ul>
+
+        <p><a href='#top-of-page'>Top</a></p>
+        </div>
+      </div>
+      </div>
+
+      <div class="row">
+<div class="col-xs-span-10 footer">
+  <p>BBC Hive is an Open Source BBC project licensed under MIT</p>
+  <p>This site is built with Jekyll and Bootstrap, and hosted on GitHub pages.</p>
+  <p><strong>&copy; 2015 BBC</strong></p>
+</div>
+</div>
+
+
+
+    </div>
+
+
+        <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="/hive-ci/js/bootstrap.min.js">
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="/hive-ci/js/ie10-viewport-bug-workaround.js"></script>
+    
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-63228527-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </body>
+</html>

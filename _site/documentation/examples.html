@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Examples</title>
+  <meta name="description" content="This page contains some examples to show how tests may be set up and executed.">
+
+  <link rel="stylesheet" href="/hive-ci/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/hive-ci/documentation/examples.html">
+  <link rel="alternate" type="application/rss+xml" title="Hive CI | CI for device testing" href="http://localhost:4000/hive-ci/feed.xml" />
+</head>
+
+
+
+  <body>
+    <div class="site-wrapper page-image">
+
+      <a id='top-of-page'></a>
+      <nav class="navbar navbar-default navbar-fixed-topx">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/hive-ci/index.html">
+        <img src="/hive-ci/images/hive-ci-simple.png" class="nav-logo pull-left" alt="Hive CI interface">
+      </a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/index.html">Home</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/hive-ci.html">Hive CI</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/hive-runner.html">Hive Runner</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/hivemind.html">Hive Mind</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/testmine.html">Test Mine</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/test-tools.html">Test Tools</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/documentation/hive-ci.html">Info</a>
+        </li>
+        
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+
+      <div class="row">
+
+      <div class="page-content">
+        <div class="col-xs-12 col-sm-2">
+          <ul class="nav nav-pills nav-stacked nav-compact">
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/hive-ci.html">Introduction</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/overview.html">Overview</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/setting-up-a-hive.html">Setting up a Hive</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/quick-start.html"> + Quick Start Guide</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/best-practices.html"> + Best Practices</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/examples.html"> + Examples</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/plugins-and-components.html">Plugins</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/android_plugin.html"> + Android Plugin</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/ios_plugin.html"> + iOS Plugin</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/tv_plugin.html"> + TV Plugin</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/device_api.html"> + Device API</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/software-links.html">Software Links</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/glossary.html">Glossary</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/faq.html">FAQ</a>
+                
+              </li>
+            
+          </ul>
+        </div>
+
+
+        <div class="col-xs-12  col-sm-9">
+        <h1>Examples</h1>
+        <p class="lead">This page contains some examples to show how tests may be set up and executed.</p>
+
+<h2 id="contents">Contents</h2>
+<ul>
+  <li><a href="#ios">iOS</a>
+    <ul>
+      <li><a href="#xcode-ui-tests">XCode UI Tests</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="ios">iOS</h2>
+
+<h3 id="xcode-ui-tests">XCode UI Tests</h3>
+
+<p>Since XCode 8 it has been possible to create a build for testing that can then be zipped up into a package and used in a Hive batch. The method for creating the build is shown below but first the project in Hive Scheduler needs to be set up.</p>
+
+<p>On the Hive Scheduler, create a new test script with the ‘iOS IPA’ target with the template:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># Copy the uploaded build and rename as a zip file</span>
+cp <span class="nv">$APP_PATH</span> your_project.zip
+
+<span class="c"># Unpack</span>
+unzip your_project.zip
+
+<span class="nb">cd </span>Products
+
+<span class="c"># Find the xctestrun file</span>
+<span class="nv">TEST_FILE</span><span class="o">=</span><span class="sb">`</span>ls <span class="k">*</span>.xctestrun<span class="sb">`</span>
+<span class="k">if</span> <span class="o">[</span> x<span class="nv">$TEST_FILE</span> <span class="o">==</span> <span class="s1">'x'</span> <span class="o">]</span>
+<span class="k">then
+  </span><span class="nb">echo </span>No xctestrun file found &gt;&gt; <span class="nv">$HIVE_SCRIPT_ERRORS</span>
+  <span class="nb">exit </span>1
+<span class="k">else</span>
+  <span class="c"># Execute the tests</span>
+  xcodebuild -xctestrun <span class="s2">"</span><span class="nv">$TEST_FILE</span><span class="s2">"</span> <span class="se">\</span>
+             -destination <span class="s2">"platform=iOS,id=</span><span class="nv">$DEVICE_TARGET</span><span class="s2">"</span> <span class="se">\</span>
+             <span class="nb">test</span>-without-building &gt; raw_output.txt
+  <span class="nv">XC_EXIT</span><span class="o">=</span><span class="nv">$?</span>
+
+  <span class="c"># Generate a JUnit and xcpretty results files</span>
+  cat raw_output.txt | xcpretty --report junit &gt; xcpretty.out
+
+  <span class="c"># Convert the JUnit result file into RES format for uploading to the Hive</span>
+  res --junit build/reports/junit.xml
+end
+
+<span class="c"># Copy all results files to the results directory for uploading</span>
+cp raw_output.txt xcpretty.out <span class="k">*</span>.res <span class="nv">$HIVE_RESULTS</span>
+
+<span class="c"># Report an error if XCodeBuild failed to run</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$XC_EXIT</span> -ne 0 <span class="o">]</span>
+<span class="k">then
+  </span><span class="nb">echo </span>XCodeBuild exited with error &gt;&gt; <span class="nv">$HIVE_SCRIPT_ERROR</span>
+<span class="k">fi</span>
+</code></pre>
+</div>
+
+<p>Create a project using this script. It is not necessary to specify a source repository or branch and the execution directory should be set to <code class="highlighter-rouge">.</code>. Remember to set the ‘Population Mechanism’ as appropriate as well as any default queues.</p>
+
+<p>Now that the project has been set up in Hive Scheduler, create a ‘build for testing’ from your XCode project:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>xcodebuild -workspace your_project.xcworkspace <span class="se">\</span>
+           -scheme <span class="s1">'your test schema'</span> <span class="se">\</span>
+           -destination <span class="s1">'generic/platform=iOS'</span> <span class="se">\</span>
+           clean build-for-testing
+</code></pre>
+</div>
+
+<p>The destination <code class="highlighter-rouge">generic/platform=iOS</code> indicates that the tests can be executed on any suitably provisioned device that satisfies the requirements of the project.</p>
+
+<p>The <code class="highlighter-rouge">build-for-testing</code> and <code class="highlighter-rouge">test-without-building</code> actions in this command and the script created above together make up the <code class="highlighter-rouge">test</code> action that can be used with xcodebuild for compiling and executing on a connected device. You can try the <code class="highlighter-rouge">test-without-building</code> command as shown in the script above to verify this.</p>
+
+<p>The above command will create a build inside the <code class="highlighter-rouge">DerivedData</code> directory together with an xctestrun file. These should be packaged up with <code class="highlighter-rouge">zip</code>.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">cd </span>DerivedData/your_project/Build
+ls Products
+<span class="c"># =&gt;    your_project.xctestrun   Debug-iphoneos/</span>
+
+zip -r your_project.zip Products
+<span class="c"># The Hive Scheduler currently requires iOS build files to have an ipa extension</span>
+mv your_project.zip your_project.ipa
+</code></pre>
+</div>
+
+<p>The <code class="highlighter-rouge">your_project.ipa</code> file is the build to be uploaded to the Hive Scheduler when creating the batch.</p>
+
+<p>You can now execute the project using the <code class="highlighter-rouge">your_project.ipa</code> file generated above as the build.</p>
+
+<p>Note that all the commands for creating and packaging the build can be built into a CI pipeline and the Hive Batch can then be triggered with:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># PROJECT_ID = Project Id from Hive Scheduler</span>
+curl http://your_hive_scheduler_url/api/batches <span class="se">\</span>
+     --form <span class="nv">version</span><span class="o">=</span>1.0 <span class="se">\</span>
+     --form <span class="nv">project_id</span><span class="o">=</span><span class="nv">$PROJECT_ID</span> <span class="se">\</span>
+     --form batch[name]<span class="o">=</span><span class="s1">'My iOS project'</span> <span class="se">\</span>
+     --form <span class="nv">build</span><span class="o">=</span>your_project.ipa <span class="se">\</span>
+     --form execution_variables[queues]<span class="o">=</span><span class="s1">'queue_1,queue_2,queue_3'</span>
+</code></pre>
+</div>
+
+        <p><a href='#top-of-page'>Top</a></p>
+        </div>
+      </div>
+      </div>
+
+      <div class="row">
+<div class="col-xs-span-10 footer">
+  <p>BBC Hive is an Open Source BBC project licensed under MIT</p>
+  <p>This site is built with Jekyll and Bootstrap, and hosted on GitHub pages.</p>
+  <p><strong>&copy; 2015 BBC</strong></p>
+</div>
+</div>
+
+
+
+    </div>
+
+
+        <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="/hive-ci/js/bootstrap.min.js">
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="/hive-ci/js/ie10-viewport-bug-workaround.js"></script>
+    
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-63228527-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </body>
+</html>

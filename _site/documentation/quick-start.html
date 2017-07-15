@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Quick Start Guide</title>
+  <meta name="description" content="This quick start guide demonstrates how to get a single Hive Runner and Hive Scheduler up and running on a single server to execute a simple shell script tes...">
+
+  <link rel="stylesheet" href="/hive-ci/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/hive-ci/documentation/quick-start.html">
+  <link rel="alternate" type="application/rss+xml" title="Hive CI | CI for device testing" href="http://localhost:4000/hive-ci/feed.xml" />
+</head>
+
+
+
+  <body>
+    <div class="site-wrapper page-image">
+
+      <a id='top-of-page'></a>
+      <nav class="navbar navbar-default navbar-fixed-topx">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/hive-ci/index.html">
+        <img src="/hive-ci/images/hive-ci-simple.png" class="nav-logo pull-left" alt="Hive CI interface">
+      </a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/index.html">Home</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/hive-ci.html">Hive CI</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/hive-runner.html">Hive Runner</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/hivemind.html">Hive Mind</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/testmine.html">Test Mine</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/test-tools.html">Test Tools</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/documentation/hive-ci.html">Info</a>
+        </li>
+        
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+
+      <div class="row">
+
+      <div class="page-content">
+        <div class="col-xs-12 col-sm-2">
+          <ul class="nav nav-pills nav-stacked nav-compact">
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/hive-ci.html">Introduction</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/overview.html">Overview</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/setting-up-a-hive.html">Setting up a Hive</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/quick-start.html"> + Quick Start Guide</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/best-practices.html"> + Best Practices</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/examples.html"> + Examples</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/plugins-and-components.html">Plugins</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/android_plugin.html"> + Android Plugin</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/ios_plugin.html"> + iOS Plugin</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/tv_plugin.html"> + TV Plugin</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/device_api.html"> + Device API</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/software-links.html">Software Links</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/glossary.html">Glossary</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/faq.html">FAQ</a>
+                
+              </li>
+            
+          </ul>
+        </div>
+
+
+        <div class="col-xs-12  col-sm-9">
+        <h1>Quick Start Guide</h1>
+        <p class="lead">This quick start guide demonstrates how to get a single Hive Runner and Hive Scheduler up and running on a single server to execute a simple shell script test. This is followed by two further setup guides; setting up Hive Mind and a Hive Runner to run Android tests.</p>
+
+<h2 id="contents">Contents</h2>
+<ul>
+  <li><a href="#part-1-hive-runner-and-hive-scheduler">Part 1: Hive Runner and Hive Scheduler</a>
+    <ul>
+      <li><a href="#prerequisites">Prerequisites</a></li>
+      <li><a href="#hive-scheduler">Hive Scheduler</a></li>
+      <li><a href="#hive-runner">Hive Runner</a></li>
+      <li><a href="#example-test">Example test</a></li>
+    </ul>
+  </li>
+  <li><a href="#part-2-android-hive-runner">Part 2: Android Hive Runner</a>
+    <ul>
+      <li><a href="#modifying-an-existing-hive-runner">Modifying an existing Hive Runner</a></li>
+      <li><a href="#setting-up-a-new-hive-runner-with-the-android-plugin">Setting up a new Hive Runner with the Android plugin</a></li>
+      <li><a href="#example-test-1">Example test</a></li>
+    </ul>
+  </li>
+  <li><a href="#part-3-ios-hive-runner">Part 3: iOS Hive Runner</a>
+    <ul>
+      <li><a href="#modifying-an-existing-hive-runner-1">Modifying an existing Hive Runner</a></li>
+      <li><a href="#setting-up-a-new-hive-runner-with-the-ios-plugin">Setting up a new Hive Runner with the iOS plugin</a></li>
+    </ul>
+  </li>
+  <li><a href="#part-4-hive-mind">Part 4: Hive Mind</a>
+    <ul>
+      <li><a href="#connect-hive-runner-to-hive-mind">Connect Hive Runner to Hive Mind</a></li>
+      <li><a href="#connect-hive-scheduler-to-hive-mind">Connect Hive Scheduler to Hive Mind</a></li>
+    </ul>
+  </li>
+  <li><a href="#suggested-hardware">Suggested Hardware</a></li>
+</ul>
+
+<h2 id="part-1-hive-runner-and-hive-scheduler">Part 1: Hive Runner and Hive Scheduler</h2>
+
+<h3 id="prerequisites">Prerequisites</h3>
+
+<p>The following software needs to be installed for this guide:</p>
+
+<ul>
+  <li>Ruby and the <code class="highlighter-rouge">bundler</code> gem</li>
+  <li>Git</li>
+  <li>MySQL server and the client development library (for Hive Scheduler)</li>
+  <li>A Javascript runtime (for Hive Scheduler). Eg, NodeJS</li>
+</ul>
+
+<h4 id="ruby">Ruby</h4>
+
+<p>It is possible to use the version of Ruby installed with the operating system provided it is version 2.1 or later. However, when installing gems it may be necessary to have escalated privileges. For this reason, the recommended method is to use Ruby installed using a version manager such as RVM. Full details can be found at https://rvm.io/. For Ubuntu curl will need to be installed first so the full instructions are:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>sudo apt-get install curl
+<span class="gp">$ </span>gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+<span class="gp">$ </span><span class="se">\c</span>url -sSL https://get.rvm.io | bash -s stable --ruby
+</code></pre>
+</div>
+
+<p>Then log out and back or:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span><span class="nb">source</span> <span class="nv">$HOME</span>/.rvm/scripts/rvm
+<span class="gp">$ </span>rvm install 2.3
+<span class="gp">$ </span>rvm use 2.3
+</code></pre>
+</div>
+<p>Note that we have been informed of issues in installations of hive-runner/scheduler in ruby &gt;= 2.4. So, use ruby &lt; 2.4, preferrably 2.3.0</p>
+
+<p>Additionally, install the bundler gem:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>gem install bundler
+</code></pre>
+</div>
+
+<h4 id="git-mysql-and-the-javascript-runtime">Git, MySQL and the Javascript runtime</h4>
+
+<p>On Ubuntu, the remaining requirements can be installed with:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># For all components</span>
+sudo apt-get install git
+<span class="c"># For Hive Scheduler and Hive Mind</span>
+sudo apt-get install mysql-server libmysqlclient-dev nodejs
+</code></pre>
+</div>
+
+<p>The Rails and MySQL database configuration should be set in environment variables for Rails to use. Add the following lines to <code class="highlighter-rouge">~/.bashrc</code></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>export RAILS_ENV=production
+export DATABASE_HOST=localhost
+export DATABASE_USERNAME=&lt;username&gt;
+export DATABASE_PASSWORD=&lt;password&gt;
+export DATABASE_DATABASE=&lt;database name&gt;
+</code></pre>
+</div>
+
+<p>Either reload this file with <code class="highlighter-rouge">source ~/.bashrc</code> or log out and back in.</p>
+
+<h3 id="hive-scheduler">Hive Scheduler</h3>
+
+<p>Download the Hive Scheduler software with:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>git clone https://github.com/bbc/hive-scheduler
+<span class="gp">$ </span><span class="nb">cd </span>hive-scheduler
+<span class="gp">$ </span>bundle install --without development <span class="nb">test</span>
+</code></pre>
+</div>
+
+<p>Set up the database and assets. If the database username is not <code class="highlighter-rouge">root</code> the first command will ask for the MySQL root password.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>rake db:create
+<span class="gp">$ </span>rake db:migrate
+<span class="gp">$ </span>rake db:seed
+<span class="gp">$ </span>rake assets:precompile
+</code></pre>
+</div>
+
+<p>Start the Hive Scheduler with:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>rails s
+</code></pre>
+</div>
+
+<p>After Rails has started up go to <code class="highlighter-rouge">http://localhost:3000</code> in a browser to see the running scheduler.</p>
+
+<h3 id="hive-runner">Hive Runner</h3>
+
+<p>Install the Hive Runner gem:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>gem install hive-runner
+</code></pre>
+</div>
+
+<p>and then run the <code class="highlighter-rouge">hive_setup</code>:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>hive_setup my_hive
+</code></pre>
+</div>
+
+<p>Leave all the default options and select continue by typing ‘x’. After the installation has completed enter the <code class="highlighter-rouge">my_hive</code> directory and start the Hive Runner:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span><span class="nb">cd </span>my_hive
+<span class="gp">$ </span>hived start
+</code></pre>
+</div>
+
+<p>Check that the Hive Runner is running:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>hived status
+
+start_hive: running <span class="o">[</span>pid 37175]
+
+  Controllers <span class="k">in </span>use:
+    <span class="k">*</span> shell
+
+  Software versions:
+    <span class="k">*</span> hive-runner: 2.1.17
+    <span class="k">*</span> hive-messages: 1.0.6
+
+  Total number of devices: 5
+
++---------+--------+-----+--------+--------+
+| Device  | Worker | Job | Status | Queues |
++---------+--------+-----+--------+--------+
++---------+--------+-----+--------+--------+
+| Shell-1 | 37178  | --- | ---    | bash   |
++---------+--------+-----+--------+--------+
+| Shell-2 | 37181  | --- | ---    | bash   |
++---------+--------+-----+--------+--------+
+| Shell-3 | 37185  | --- | ---    | bash   |
++---------+--------+-----+--------+--------+
+| Shell-4 | 37189  | --- | ---    | bash   |
++---------+--------+-----+--------+--------+
+| Shell-5 | 37193  | --- | ---    | bash   |
++---------+--------+-----+--------+--------+
+</code></pre>
+</div>
+
+<p>If you now go back to <code class="highlighter-rouge">http://localhost:3000</code> to view the Hive Scheduler, as set up above, and follow the “Monitoring -&gt; Workers” link you can see the five shell workers. Note that the ‘Hive’ and ‘Device’ columns will not contain information as this depends on the Hive Mind device database.</p>
+
+<h3 id="example-test">Example test</h3>
+
+<p>The example test will find the current date and compare with a day of the week provided as a parameter for the test. This way you can see the behaviour for tests that pass and fail.</p>
+
+<p>Additionally, some system information will be gathered and reported in the log files.</p>
+
+<p>From the Hive Scheduler, http:/localhost:3000, follow the link in the top bar for ‘Scripts’. Then press the ‘New’ button. From the ‘Target platform’ options select ‘Shell Script’ and fill in the name ‘Day test’. In the template field enter:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c">## System information</span>
+uname -a
+df -h
+
+<span class="c">## Generate error output</span>
+ls /tmp/directory_does_not_exist
+
+<span class="c">## Do something to take some time</span>
+date
+sleep 30
+date
+sleep 30
+date
+sleep 30
+date
+
+<span class="c">## Create a custom output file</span>
+<span class="nb">echo </span>Hello World &gt; <span class="nv">$HIVE_RESULTS</span>/hello.txt
+
+<span class="k">if</span> <span class="o">[</span> <span class="sb">`</span>date +%a<span class="sb">`</span> <span class="o">==</span> <span class="nv">$HIVE_DAY</span> <span class="o">]</span>
+<span class="k">then
+  </span><span class="nb">exit </span>0
+<span class="k">else
+  </span><span class="nb">exit </span>1
+<span class="k">fi</span>
+</code></pre>
+</div>
+
+<p>In the ‘Execution Variables’ section select ‘New Execution Variable’ and enter the field type as ‘String’ and the name as ‘day’. This corresponds to the <code class="highlighter-rouge">$HIVE_DAY</code> environment variable used in the template.</p>
+
+<p>Press the ‘Create Script’ button. This will return to the Scripts table and show the newly created script.</p>
+
+<p>Select ‘Projects’ from the top bar and press the ‘New’ button. Enter ‘Is it this day?’ as the name and leave ‘Repository’, ‘Branch’ and ‘Execution directory’ as their default values. In the ‘Script’ field select the script created above, ‘Day test’. Notice that this adds the ‘Environment Variables’ section to the bottom of the form. Under ‘Population Mechanism’ select ‘Manual’, which will add more fields to the ‘Environment Variables’ section.</p>
+
+<p>Under ‘Environment Variables’, enter ‘bash’ in the ‘Queues’ field and leave all the other options blank.</p>
+
+<p>Press the ‘Create Project’ button. This show the details of the newly created project.</p>
+
+<p>Select ‘Batches’ from the top bar and press the ‘Create batch’ button. Select the project created above, ‘Is it this day?’ and enter the name, ‘Is it Tuesday?’, and version, 1.0.</p>
+
+<p>Press ‘Next’ to enter the execution variables and set ‘Day’ to ‘Tue’. Leave the ‘Retries’ field blank.</p>
+
+<p>Press ‘Next’ to view the queue information. There will already be a single value listed, ‘bash’.</p>
+
+<p>Press ‘Next’ to view the jobs information. Leave the options blank. Press ‘Finish’ to create the batch.</p>
+
+<p>The test should now be running and you can see this firstly by visiting the main ‘Batches’ page in the Scheduler web interface and secondly on the Hive Runner by executing</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>hived status
+
+start_hive: running <span class="o">[</span>pid 37175]
+
+  Controllers <span class="k">in </span>use:
+    <span class="k">*</span> shell
+
+  Software versions:
+    <span class="k">*</span> hive-runner: 2.1.17
+    <span class="k">*</span> hive-messages: 1.0.6
+
+  Total number of devices: 5
+
++---------+--------+-----+---------+--------+
+| Device  | Worker | Job | Status  | Queues |
++---------+--------+-----+---------+--------+
++---------+--------+-----+---------+--------+
+| Shell-1 | 37178  | --- | ---     | bash   |
++---------+--------+-----+---------+--------+
+| Shell-2 | 37181  | --- | ---     | bash   |
++---------+--------+-----+---------+--------+
+| Shell-3 | 37185  | 1   | running | bash   |
++---------+--------+-----+---------+--------+
+| Shell-4 | 37189  | --- | ---     | bash   |
++---------+--------+-----+---------+--------+
+| Shell-5 | 37193  | --- | ---     | bash   |
++---------+--------+-----+---------+--------+
+</code></pre>
+</div>
+
+<p>Once the test has completed <code class="highlighter-rouge">hived status</code> will show the test to be <code class="highlighter-rouge">completed</code> and in the Hive Scheduler batches page it will show the status as ‘passed’ if today is Tuesday or ‘failed’ otherwise. By clicking on the batch name ‘Is it Tuesday?’ you will view the batch view showing a single job. Note that the columns on the right of the table, which would normally give a summary of the test step results, are blank as the test does not submit a results file.</p>
+
+<p>Click on the job id, <code class="highlighter-rouge">#1</code> in the left-most column of the jobs table to view details about the job. This will display the execution script for the test together with the standard output and error as well as any other output files.</p>
+
+<h2 id="part-2-android-hive-runner">Part 2: Android Hive Runner</h2>
+
+<p>In this section the Hive Runner will be set up to run Android tests using the <code class="highlighter-rouge">hive-runner-android</code> gem. It will be assumed that the Hive Scheduler will be running on the local machine, as detailed above. If you already have a Hive Runner set up it can be modified to run Android tests. Alternatively, it can be configured during the setup.</p>
+
+<p>Before starting it will be necessary to install the Android Debug Bridge (adb), ZIP, Android Asset Packaging Tool (aapt) and the Java run time environment and development kit. On Ubuntu:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo apt-get install zip openjdk-9-jre-headless openjdk-9-jdk-headless lib32stdc++6 lib32z1
+</code></pre>
+</div>
+
+<p>Note that <code class="highlighter-rouge">adb</code> and <code class="highlighter-rouge">aapt</code> are also available via <code class="highlighter-rouge">apt-get</code> but there are problems when using multiple devices.</p>
+
+<p>The Android SDK also needs to be installed:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>wget http://dl.google.com/android/android-sdk_r24.4.1-linux.tgz
+<span class="gp">$ </span>tar -xzvf android-sdk_r24.4.1-linux.tgz
+<span class="gp">$ </span>./android-sdk-linux/tools/android update sdk --no-ui
+</code></pre>
+</div>
+
+<p>and then add the following line to `~/.bashrc’</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">export </span><span class="nv">ANDROID_HOME</span><span class="o">=</span><span class="nv">$HOME</span>/android-sdk-linux
+<span class="nb">export </span><span class="nv">ANDROID_SDK_HOME</span><span class="o">=</span><span class="nv">$ANDROID_HOME</span>
+<span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$ANDROID_HOME</span>/tools:<span class="nv">$ANDROID_HOME</span>/platform-tools
+</code></pre>
+</div>
+
+<p>The <code class="highlighter-rouge">aapt</code> binary in <code class="highlighter-rouge">build-tools</code> also needs to be accessible:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">cd </span>android-sdk-linux/tools
+ln -s ../build-tools/23.0.1/aapt .
+</code></pre>
+</div>
+
+<p>Note that <code class="highlighter-rouge">23.0.1</code> in the above command may need to be changed depending on your version of Android SDK.</p>
+
+<h3 id="modifying-an-existing-hive-runner">Modifying an existing Hive Runner</h3>
+
+<p>While in the Hive Runner directory, stop the runner with</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>hived stop
+</code></pre>
+</div>
+
+<p>and then edit <code class="highlighter-rouge">Gemfile</code> to add the line</p>
+
+<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="n">gem</span> <span class="s1">'hive-runner-android'</span>
+</code></pre>
+</div>
+
+<p>and load the new gem</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>bundle install
+</code></pre>
+</div>
+
+<p>Edit the file <code class="highlighter-rouge">config/settings.yml</code> so that it includes:</p>
+
+<div class="language-yaml highlighter-rouge"><pre class="highlight"><code>  <span class="s">controllers</span><span class="pi">:</span>
+    <span class="s">shell</span><span class="pi">:</span>
+      <span class="c1"># Number of shell workers to allocate</span>
+      <span class="s">workers</span><span class="pi">:</span> <span class="s">5</span>
+      <span class="c1"># Queue for each shell worker</span>
+      <span class="s">queues</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s">bash</span>
+      <span class="c1"># Number of ports to allocate to each shell worker</span>
+      <span class="s">port_range_size</span><span class="pi">:</span> <span class="s">50</span>
+      <span class="s">name_stub</span><span class="pi">:</span> <span class="s">SHELL_WORKER</span>
+    <span class="s">android</span><span class="pi">:</span>
+      <span class="s">port_range_size</span><span class="pi">:</span> <span class="s">10</span>
+      <span class="s">name_stub</span><span class="pi">:</span> <span class="s">ANDROID_WORKER</span>
+</code></pre>
+</div>
+
+<p>Note that YAML file format depends on indentation so it is essential that <code class="highlighter-rouge">android</code> is indented by the same number of spaces as <code class="highlighter-rouge">shell</code> and the fields underneath, <code class="highlighter-rouge">port_range_size</code> and <code class="highlighter-rouge">name_stub</code> should both be indented by the same number of spaces, more than <code class="highlighter-rouge">android</code>. Optionally, you may remove the <code class="highlighter-rouge">shell</code> section if you do not want to execute shell runner tests.</p>
+
+<p>Restart the Hive Runner and ensure that it is running:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>hived start
+<span class="gp">$ </span>hived status
+</code></pre>
+</div>
+
+<p>The output of <code class="highlighter-rouge">hived status</code> will show that the Android controller is in use and if an Android device is connected it will be automatically listed. Note the list of queues that are automatically generated based on the make, model and android version information reported via adb.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>+--------------------+--------+-----+-----------+--------------------+
+| Device             | Worker | Job | Status    | Queues             |
++--------------------+--------+-----+-----------+--------------------+
++--------------------+--------+-----+-----------+--------------------+
+| Android-SERIAL1234 | 44655  | --- | ---       | xt1068             |
+|                    |        |     |           | motorola           |
+|                    |        |     |           | android            |
+|                    |        |     |           | android-6.0        |
+|                    |        |     |           | android-6.0-xt1068 |
++--------------------+--------+-----+-----------+--------------------+
+</code></pre>
+</div>
+
+<h3 id="setting-up-a-new-hive-runner-with-the-android-plugin">Setting up a new Hive Runner with the Android plugin</h3>
+
+<p>Install the Hive Runner gem (if it is not already installed):</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>gem install hive-runner
+</code></pre>
+</div>
+
+<p>and then run the <code class="highlighter-rouge">hive_setup</code>:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>hive_setup my_hive
+</code></pre>
+</div>
+
+<p>Select the option to ‘Add module’ and type in <code class="highlighter-rouge">android</code> as the module name. This will add the <code class="highlighter-rouge">hive-runner-android</code> gem.
+Continue the installation by typing ‘x’. After the installation has completed enter the <code class="highlighter-rouge">my_hive</code> directory and start the Hive Runner:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span><span class="nb">cd </span>my_hive
+<span class="gp">$ </span>hived start
+<span class="gp">$ </span>hived status
+</code></pre>
+</div>
+
+<p>The output of <code class="highlighter-rouge">hived status</code> will show that the Android controller is in use and if an Android device is connected it will be automatically listed. Note the list of queues that are automatically generated based on the make, model and android version information reported via adb.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>+--------------------+--------+-----+-----------+--------------------+
+| Device             | Worker | Job | Status    | Queues             |
++--------------------+--------+-----+-----------+--------------------+
++--------------------+--------+-----+-----------+--------------------+
+| Android-Serial1234 | 44655  | --- | ---       | xt1068             |
+|                    |        |     |           | motorola           |
+|                    |        |     |           | android            |
+|                    |        |     |           | android-6.0        |
+|                    |        |     |           | android-6.0-xt1068 |
++--------------------+--------+-----+-----------+--------------------+
+</code></pre>
+</div>
+
+<h3 id="example-test-1">Example test</h3>
+
+<p>For this example the Calabash Cross Platform Example from https://github.com/calabash/x-platform-example will be used. This test uses the <code class="highlighter-rouge">zip</code></p>
+
+<p>Create a new script as in the example above selecting ‘Android APK’ for the target platform and with the template:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">echo</span> <span class="s1">'gem "res"'</span> &gt;&gt; Gemfile
+bundle install
+
+calabash-android resign <span class="nv">$APK_PATH</span>
+
+bundle <span class="nb">exec </span>calabash-android run <span class="nv">$APK_PATH</span> -p android <span class="se">\</span>
+          -f Res::Formatters::RubyCucumber2 -o <span class="se">\"</span><span class="nv">$HIVE_RESULTS</span>/out.res<span class="se">\"</span> <span class="se">\</span>
+          -f pretty
+</code></pre>
+</div>
+
+<p>Note:
+* Environment variables are available to help running the tests. For example, <code class="highlighter-rouge">$APK_PATH</code> is the full path of the apk that was uploaded for the test and <code class="highlighter-rouge">$HIVE_RESULTS</code> is the directory in which any files to be uploaded to the Hive Scheduler should be put.
+* The <code class="highlighter-rouge">res</code> gem, added to the <code class="highlighter-rouge">Gemfile</code> in the first line, provides the <code class="highlighter-rouge">Res::Formatter::RubyCucumber2</code> formatter for cucumber. This creates a Res output file for reporting results back to the Hive Scheduler when <code class="highlighter-rouge">-f Res::Formatter::RubyCucumber2 -o \"$HIVE_RESULTS/out.res\"</code> is added to the cucumber or calabash command.</p>
+
+<p>Give the script a name such as ‘Calabash Android’. No additional execution variables are required.</p>
+
+<p>Create a new project using this script and set the fields:</p>
+
+<ul>
+  <li>Name: Calabash Cross Platform Example</li>
+  <li>Repository: <code class="highlighter-rouge">https://github.com/calabash/x-platform-example.git</code></li>
+  <li>Population mechanism: Manual</li>
+  <li>Queues: <code class="highlighter-rouge">android</code></li>
+  <li>Note that this will run on any android device. This can be made more specific using one of the automatically generated queues from the output of <code class="highlighter-rouge">hived status</code> above.</li>
+  <li>All other fields should be left as the default.</li>
+</ul>
+
+<p>Create a new batch with this project. Download the pre-built apk from https://github.com/calabash/x-platform-example/tree/master/prebuilt and submit it in the ‘Build information’ tab. All other fields can be left as the default.</p>
+
+<h2 id="part-3-ios-hive-runner">Part 3: iOS Hive Runner</h2>
+
+<p>In this section the Hive Runner will be set up to run iOS tests using the <code class="highlighter-rouge">hive-runner-ios</code> gem. It will be assumed that the Hive Scheduler will be running on the local machine, as detailed above. If you already have a Hive Runner set up it can be modified to run iOS tests. Alternatively, it can be configured during the setup.</p>
+
+<p>Before starting it will be necessary to install XCode, ilibmobiledevice and
+ideviceinstaller.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>xcode-select --install
+<span class="c"># Then select 'Install' from the pop-up and accept the license</span>
+
+<span class="c"># Install brew if necessary. See https://brew.sh/</span>
+
+<span class="c"># --HEAD is required until version 1.2.1 is officially released</span>
+brew install --HEAD libimobiledevice
+
+brew install ideviceinstaller
+</code></pre>
+</div>
+
+<p>The version of Ruby that comes installed with MacOS Sierra is 2.0.0 and so a newer version needs to be installed. For information about installing the latest version see https://rvm.io/rvm/install</p>
+
+<h3 id="modifying-an-existing-hive-runner-1">Modifying an existing Hive Runner</h3>
+
+<p>While in the Hive Runner directory, stop the runner with</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>hived stop
+</code></pre>
+</div>
+
+<p>and then edit <code class="highlighter-rouge">Gemfile</code> to add the line</p>
+
+<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="n">gem</span> <span class="s1">'hive-runner-ios'</span>
+</code></pre>
+</div>
+
+<p>and load the new gem</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>bundle install
+</code></pre>
+</div>
+
+<p>Edit the file <code class="highlighter-rouge">config/settings.yml</code> so that it includes:</p>
+
+<div class="language-yaml highlighter-rouge"><pre class="highlight"><code>  <span class="s">controllers</span><span class="pi">:</span>
+    <span class="s">shell</span><span class="pi">:</span>
+      <span class="c1"># Number of shell workers to allocate</span>
+      <span class="s">workers</span><span class="pi">:</span> <span class="s">5</span>
+      <span class="c1"># Queue for each shell worker</span>
+      <span class="s">queues</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s">bash</span>
+      <span class="c1"># Number of ports to allocate to each shell worker</span>
+      <span class="s">port_range_size</span><span class="pi">:</span> <span class="s">50</span>
+      <span class="s">name_stub</span><span class="pi">:</span> <span class="s">SHELL_WORKER</span>
+    <span class="s">ios</span><span class="pi">:</span>
+      <span class="s">port_range_size</span><span class="pi">:</span> <span class="s">10</span>
+      <span class="s">name_stub</span><span class="pi">:</span> <span class="s">IOS_WORKER</span>
+</code></pre>
+</div>
+
+<p>Note that YAML file format depends on indentation so it is essential that <code class="highlighter-rouge">ios</code> is indented by the same number of spaces as <code class="highlighter-rouge">shell</code> and the fields underneath, <code class="highlighter-rouge">port_range_size</code> and <code class="highlighter-rouge">name_stub</code> should both be indented by the same number of spaces, more than <code class="highlighter-rouge">ios</code>. Optionally, you may remove the <code class="highlighter-rouge">shell</code> section if you do not want to execute shell runner tests.</p>
+
+<p>Restart the Hive Runner and ensure that it is running:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>hived start
+<span class="gp">$ </span>hived status
+</code></pre>
+</div>
+
+<p>The output of <code class="highlighter-rouge">hived status</code> will show that the iOS controller is in use and if an iOS device is connected it will be automatically listed. Note the list of queues that are automatically generated based on the make, model and ios version reported by <code class="highlighter-rouge">ideviceinfo</code>.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>+----------------+--------+-----+-----------+------------------------+
+| Device         | Worker | Job | Status    | Queues                 |
++----------------+--------+-----+-----------+------------------------+
++----------------+--------+-----+-----------+------------------------+
+| Ios-SERIAL1234 | 11391  | --- | ---       | iphone_6_plus          |
+|                |        |     |           | ios                    |
+|                |        |     |           | ios-10.2               |
+|                |        |     |           | ios-10.2-iphone_6_plus |
+|                |        |     |           | iphone-10.2            |
++----------------+--------+-----+-----------+------------------------+
+</code></pre>
+</div>
+
+<h3 id="setting-up-a-new-hive-runner-with-the-ios-plugin">Setting up a new Hive Runner with the iOS plugin</h3>
+
+<p>Install the Hive Runner gem (if it is not already installed):</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>gem install hive-runner
+</code></pre>
+</div>
+
+<p>and then run the <code class="highlighter-rouge">hive_setup</code>:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>hive_setup my_hive
+</code></pre>
+</div>
+
+<p>Select the option to ‘Add module’ and type in <code class="highlighter-rouge">ios</code> as the module name. This will add the <code class="highlighter-rouge">hive-runner-ios</code> gem.
+Continue the installation by typing ‘x’. After the installation has completed enter the <code class="highlighter-rouge">my_hive</code> directory and start the Hive Runner:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span><span class="nb">cd </span>my_hive
+<span class="gp">$ </span>hived start
+<span class="gp">$ </span>hived status
+</code></pre>
+</div>
+
+<p>The output of <code class="highlighter-rouge">hived status</code> will show that the iOS controller is in use and if an iOS device is connected it will be automatically listed. Note the list of queues that are automatically generated based on the make, model and ios version information reported by ideviceinfo.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>+----------------+--------+-----+-----------+------------------------+
+| Device         | Worker | Job | Status    | Queues                 |
++----------------+--------+-----+-----------+------------------------+
++----------------+--------+-----+-----------+------------------------+
+| Ios-SERIAL1234 | 11391  | --- | ---       | iphone_6_plus          |
+|                |        |     |           | ios                    |
+|                |        |     |           | ios-10.2               |
+|                |        |     |           | ios-10.2-iphone_6_plus |
+|                |        |     |           | iphone-10.2            |
++----------------+--------+-----+-----------+------------------------+
+</code></pre>
+</div>
+
+<h2 id="part-4-hive-mind">Part 4: Hive Mind</h2>
+
+<p>Hive Mind is used to manage devices connected to the hive. Whilst it is not essential to use Hive Mind, it is useful for displaying the following information:
+* Which devices are connected to which Hive Runners
+* When devices are offline or experiencing other problems
+* Hive Runner logs for devices
+* Diagnostics details such as uptime and battery temperature</p>
+
+<p>Additionally, Hive Mind can be used to create custom queues.</p>
+
+<p>Check out the Hive Mind repository:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>git clone https://github.com/bbc/hive_mind
+<span class="gp">$ </span><span class="nb">cd </span>hive_mind
+<span class="gp">$ </span>bundle install --without development <span class="nb">test </span>integration
+</code></pre>
+</div>
+
+<p>Normally Hive Mind and Hive Scheduler would be run on different servers. For the moment they will both use the same details as set in <code class="highlighter-rouge">~/.bashrc</code>, above, but the Hive Mind database name will be given explicitly with each command.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span><span class="nv">DATABASE_NAME</span><span class="o">=</span>hivemind rake db:create
+<span class="gp">$ </span><span class="nv">DATABASE_NAME</span><span class="o">=</span>hivemind rake db:migrate
+<span class="gp">$ </span><span class="nv">DATABASE_NAME</span><span class="o">=</span>hivemind rails s
+</code></pre>
+</div>
+
+<p>If you now visit http://localhost:3001 you can view the home page of Hive Mind with no devices registered. Leave Hive Mind running while proceeding on to configure Hive Mind and Hive Scheduler.</p>
+
+<h3 id="connect-hive-runner-to-hive-mind">Connect Hive Runner to Hive Mind</h3>
+
+<p>Stop the Hive Runner if it is running:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span><span class="nb">cd </span>my_hive
+<span class="gp">$ </span>hived stop
+</code></pre>
+</div>
+
+<p>Find the following section in <code class="highlighter-rouge">config/settings.yml</code>:</p>
+
+<div class="language-yaml highlighter-rouge"><pre class="highlight"><code>  <span class="s">network</span><span class="pi">:</span>
+    <span class="s">scheduler</span><span class="pi">:</span> <span class="s">http://localhost:3000</span>
+    <span class="c1">#hive_mind: http://localhost:3001</span>
+</code></pre>
+</div>
+
+<p>and uncomment the <code class="highlighter-rouge">hive_mind</code> line. Restart the Hive Runner:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>hived start
+</code></pre>
+</div>
+
+<p>Visiting http://localhost:3001 will now show two device types, Hive and Mobile. Clicking on either of these will show a list of manufacturers, BBC in the case of Hive, and then clicking on the manufacturer will show all models and devices. Clicking on a device will display the full details.</p>
+
+<p>Note that the default names are given to devices; the hostname for a Hive and the device model for a mobile. These names can be changed from the device details page.</p>
+
+<h3 id="connect-hive-scheduler-to-hive-mind">Connect Hive Scheduler to Hive Mind</h3>
+
+<p>The connection to Hive Mind from Hive Scheduler is defined in <code class="highlighter-rouge">config/settings.yml</code> in Hive Scheduler. Ensure that the default or production sections have</p>
+
+<div class="language-yaml highlighter-rouge"><pre class="highlight"><code>  <span class="s">hive_mind</span><span class="pi">:</span>
+    <span class="s">url</span><span class="pi">:</span> <span class="s">http://&lt;ip address&gt;:3001</span>
+</code></pre>
+</div>
+
+<p>and restart Hive Scheduler. Note that the setting requires an IP address or hostname even if Hive Scheduler and Hive Mind are running on the same server. This is because it is used for showing links from the Hive Scheduler batch and job pages to the device details in Hive Mind.</p>
+
+<p>Rerun the same tests created above and you will see the device name listed on the batch page once it has started running.</p>
+
+<h2 id="suggested-hardware">Suggested Hardware</h2>
+
+<p>It is recommended that Ubuntu PCs should be used for Android Hive Runners and Macs should be used for iOS Hive Runners. The Hive Scheduler and Hive Mind would normally be on separate servers and may be hosted in the cloud.</p>
+
+<p>For the Android Hive we use <a href="http://shop.lenovo.com/gb/en/desktops/lenovo/q-series/q190/">Lenovo IdeaCentres Q190</a> upgraded to 8G memory. Whilst these are no longer being made by Lenovo it can be used as a guide.</p>
+
+<p>For USB hubs, <a href="http://www.dlink.com/uk/en/home-solutions/connect/usb/dub-h7-7-port-usb-2-0-hub">D-Link DUB-H7</a> and <a href="https://www.kensington.com/en/gb/4716/charge-sync-tablet-cabinets">Kensington Charging Cabinets</a> both work well.</p>
+
+        <p><a href='#top-of-page'>Top</a></p>
+        </div>
+      </div>
+      </div>
+
+      <div class="row">
+<div class="col-xs-span-10 footer">
+  <p>BBC Hive is an Open Source BBC project licensed under MIT</p>
+  <p>This site is built with Jekyll and Bootstrap, and hosted on GitHub pages.</p>
+  <p><strong>&copy; 2015 BBC</strong></p>
+</div>
+</div>
+
+
+
+    </div>
+
+
+        <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="/hive-ci/js/bootstrap.min.js">
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="/hive-ci/js/ie10-viewport-bug-workaround.js"></script>
+    
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-63228527-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </body>
+</html>

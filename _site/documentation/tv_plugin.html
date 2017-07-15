@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>TV Plugin</title>
+  <meta name="description" content="The TV Hive Runner plugin is used for managing HTML application tests on TVs and set top boxes.">
+
+  <link rel="stylesheet" href="/hive-ci/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/hive-ci/documentation/tv_plugin.html">
+  <link rel="alternate" type="application/rss+xml" title="Hive CI | CI for device testing" href="http://localhost:4000/hive-ci/feed.xml" />
+</head>
+
+
+
+  <body>
+    <div class="site-wrapper page-image">
+
+      <a id='top-of-page'></a>
+      <nav class="navbar navbar-default navbar-fixed-topx">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/hive-ci/index.html">
+        <img src="/hive-ci/images/hive-ci-simple.png" class="nav-logo pull-left" alt="Hive CI interface">
+      </a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/index.html">Home</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/hive-ci.html">Hive CI</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/hive-runner.html">Hive Runner</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/hivemind.html">Hive Mind</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/testmine.html">Test Mine</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/test-tools.html">Test Tools</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/documentation/hive-ci.html">Info</a>
+        </li>
+        
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+
+      <div class="row">
+
+      <div class="page-content">
+        <div class="col-xs-12 col-sm-2">
+          <ul class="nav nav-pills nav-stacked nav-compact">
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/hive-ci.html">Introduction</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/overview.html">Overview</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/setting-up-a-hive.html">Setting up a Hive</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/quick-start.html"> + Quick Start Guide</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/best-practices.html"> + Best Practices</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/examples.html"> + Examples</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/plugins-and-components.html">Plugins</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/android_plugin.html"> + Android Plugin</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/ios_plugin.html"> + iOS Plugin</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/tv_plugin.html"> + TV Plugin</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/device_api.html"> + Device API</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/software-links.html">Software Links</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/glossary.html">Glossary</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/faq.html">FAQ</a>
+                
+              </li>
+            
+          </ul>
+        </div>
+
+
+        <div class="col-xs-12  col-sm-9">
+        <h1>TV Plugin</h1>
+        <p class="lead">The TV Hive Runner plugin is used for managing HTML application tests on TVs and set top boxes.</p>
+
+<h2 id="contents">Contents</h2>
+<ul>
+  <li><a href="#prerequisites">Prerequisites</a></li>
+  <li><a href="#installation">Installation</a></li>
+  <li><a href="#tv-test-lifecycle">TV test lifecycle</a></li>
+</ul>
+
+<h2 id="prerequisites">Prerequisites</h2>
+
+<p>Communication between TVs and the Hive Runner depends on <a href="https://github.com/bbc/hive_mind">Hive Mind</a> and so this needs to be set up with the <code class="highlighter-rouge">hive_mind_tv</code> engine.</p>
+
+<p>Between tests the devices need to be running a holding application such as <a href="https://github.com/bbc/hive-capture">Hive Capture</a>. This holding application should be installed on a web server and will allow the TV to poll Hive Mind. The holding application url and the application name that it reports to Hive Mind will be used in the configuration of the Hive, below.</p>
+
+<p>For more details about the communication between the Hive and TVs see the <a href="#tv-test-lifecycle">TV test lifecycle</a> section below.</p>
+
+<h2 id="installation">Installation</h2>
+
+<p>The Ruby gem for the TV Hive plugin is <code class="highlighter-rouge">hive-runner-tv</code> and it can be added to an existing hive by adding</p>
+
+<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="n">gem</span> <span class="s1">'hive-runner-tv'</span>
+</code></pre>
+</div>
+
+<p>to <code class="highlighter-rouge">Gemfile</code> and executing <code class="highlighter-rouge">bundle install</code> while the Hive is stopped. Before restarting the Hive the following lines should be added to the <code class="highlighter-rouge">config/settings.yml</code> file inside the <code class="highlighter-rouge">controller</code> section:</p>
+
+<div class="language-yaml highlighter-rouge"><pre class="highlight"><code>    <span class="s">tv</span><span class="pi">:</span>
+      <span class="s">name_stub</span><span class="pi">:</span> <span class="s">TV_WORKER</span>
+      <span class="s">port_range_size</span><span class="pi">:</span> <span class="s">10</span>
+</code></pre>
+</div>
+
+<p>and in the <code class="highlighter-rouge">network</code> section add:</p>
+
+<div class="language-yaml highlighter-rouge"><pre class="highlight"><code>    <span class="s">hive_mind</span><span class="pi">:</span> <span class="s">http://&lt;hive mind url&gt;</span>
+    <span class="s">tv</span><span class="pi">:</span>
+      <span class="s">titantv_url</span><span class="pi">:</span> <span class="s">http://&lt;holding application url&gt;</span>
+      <span class="s">titantv_name</span><span class="pi">:</span> <span class="s">&lt;holding application name&gt;</span>
+</code></pre>
+</div>
+
+<p>Alternatively, the TV plugin can be included when setting up a new Hive. Select the option to ‘Add module’ and enter <code class="highlighter-rouge">tv</code> as the module name. The <code class="highlighter-rouge">network</code> section above will need to be configured after installation as above.</p>
+
+<h2 id="tv-test-lifecycle">TV test lifecycle</h2>
+
+<p>The TV Runner provides capabilities for executing tests on Smart, or Connected, TVs.</p>
+
+<p>For Smart TVs, the Hive does not normally have direct connection with the device. As the applications for TVs are Javascript web applications this problem is overcome by loading Javascript libraries along with the application to communicate with the Hive and with Hive Mind, and between tests a “holding application” that communicates with Hive Mind is loaded.</p>
+
+<p>The communication between the device and Hive Mind or the Hive is done by making a regular request (a poll) where the server is able to respond with instructions for the device.</p>
+
+<p>When Hive Mind is polled it may respond with a url for the device to load, either for the application to be tested or the holding application at the end of a test.</p>
+
+<p>During a test the Hive runs a Talkshow server for the device to poll and the responses are the test commands.</p>
+
+<p>An overview of the communication flow between the device, Hive Mind, the Hive and Hive Scheduler is given below.</p>
+
+<p><img src="/hive-ci/images/tv-runner-flow.png" alt="TV Runner flow diagram" /></p>
+
+        <p><a href='#top-of-page'>Top</a></p>
+        </div>
+      </div>
+      </div>
+
+      <div class="row">
+<div class="col-xs-span-10 footer">
+  <p>BBC Hive is an Open Source BBC project licensed under MIT</p>
+  <p>This site is built with Jekyll and Bootstrap, and hosted on GitHub pages.</p>
+  <p><strong>&copy; 2015 BBC</strong></p>
+</div>
+</div>
+
+
+
+    </div>
+
+
+        <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="/hive-ci/js/bootstrap.min.js">
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="/hive-ci/js/ie10-viewport-bug-workaround.js"></script>
+    
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-63228527-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </body>
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Hive Runner</title>
+  <meta name="description" content="Device-centric CI
+">
+
+  <link rel="stylesheet" href="/hive-ci/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/hive-ci/hive-runner.html">
+  <link rel="alternate" type="application/rss+xml" title="Hive CI | CI for device testing" href="http://localhost:4000/hive-ci/feed.xml" />
+</head>
+
+
+
+<body>
+  <div class="site-wrapper page-image">
+
+    <nav class="navbar navbar-default navbar-fixed-topx">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/hive-ci/index.html">
+        <img src="/hive-ci/images/hive-ci-simple.png" class="nav-logo pull-left" alt="Hive CI interface">
+      </a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/index.html">Home</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/hive-ci.html">Hive CI</a>
+        </li>
+        
+        
+        
+        <li class="active">
+          <a class="active" href="/hive-ci/hive-runner.html">Hive Runner</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/hivemind.html">Hive Mind</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/testmine.html">Test Mine</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/test-tools.html">Test Tools</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/documentation/hive-ci.html">Info</a>
+        </li>
+        
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+    <div class="row">
+      <div class="page-content">
+
+        <div class="col-xs-10 col-md-offset-1 col-xs-offset-1">
+          <p><img src="/hive-ci/images/hive-runner.png" class="col-md-2 pull-left img-responsive" alt="Hive Mind" /></p>
+<h1 class="pull-right"><a href="https://github.com/hive-ci/hive-runner" class="label label-danger">GitHub</a></h1>
+
+<h1 id="hive-runner">Hive Runner</h1>
+
+<p class="lead"><strong>Detects and run tests on connected devices</strong></p>
+
+<p><br />
+<br />
+<br /></p>
+
+<p>Hive Mind allows you to administer your hives and devices:</p>
+
+<ul>
+  <li>Specify which devices run which type of tests</li>
+  <li>Look up device information</li>
+  <li>Spot problems with devices</li>
+</ul>
+
+<p>It also serves as an inventory system for your office devices.</p>
+
+<p><br />
+<br />
+<br />
+<br /></p>
+
+<h2 id="getting-started">Getting started</h2>
+
+<p>HiveMind is a beta system at the moment. We are just switching to using it internally from
+our old device management database. You’re welcome to play with it but be aware we’re working
+on it right at this moment!</p>
+
+<p>You will need to install a recent version of ruby.</p>
+
+<p>To get started, check out the rails application:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>git clone git@github.com:bbc/hive_mind.git
+cd hive_mind
+</code></pre>
+</div>
+
+<p>You will need to do some basic configuration to get going. Open up the Gemfile, and add the following:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>gem 'hive_mind_mobile', git: 'https://github.com/bbc/hive_mind_mobile'
+</code></pre>
+</div>
+
+<p>This will enable the mobile engine. Now run:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>bundle install --without integration
+</code></pre>
+</div>
+
+<p>This will install the dependencies. Finally run:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>bundle exec rake db:migrate
+</code></pre>
+</div>
+
+<p>This will set up the database. You’re running in development mode, which means you’re using a sqlite
+database. If you want to configure a different database. You can modify config/database.yml. We use
+a mysql database so that is the default for production hivemind.</p>
+
+<p>Finally, start your application by running:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>bundle exec rails s
+</code></pre>
+</div>
+
+<p>This will start hive_mind on port 3001 on your machine. Visit http://localhost:3001.</p>
+
+<p>There’s not much to see at the moment. You need to start getting devices reporting in!</p>
+
+<p><br /></p>
+
+<h2 id="connecting-up-to-your-hive-runners">Connecting up to your hive runners</h2>
+
+<p>Make sure your hive runners are up to date. You can add your local HiveMind to the runner config
+to get your hives reporting into the system. Edit the config/settings.yml file in each of your
+runner instances, adding in the hive_mind url to your network config:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>network:
+  hive_mind: http://localhost:3001
+</code></pre>
+</div>
+
+<p>Restart your hives:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>hived stop
+hived start
+</code></pre>
+</div>
+
+<p>Your hives should start reporting in within 30 seconds. Visit http://localhost:3001/brands/1 to
+see your BBC branded hives checking in.</p>
+
+<p><br />
+<br /></p>
+
+<h2 id="connecting-up-to-your-scheduler">Connecting up to your scheduler</h2>
+
+<p>Add the following config to your bash profile:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>export HIVE_MIND_URL=http://&lt;your-ip-address&gt;:3001
+</code></pre>
+</div>
+
+<p>Restart your scheduler. When your runners report test results to the hive, they will now also
+report in the device id from HiveMind, giving you more details about your devices.</p>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+<div class="col-xs-span-10 footer">
+  <p>BBC Hive is an Open Source BBC project licensed under MIT</p>
+  <p>This site is built with Jekyll and Bootstrap, and hosted on GitHub pages.</p>
+  <p><strong>&copy; 2015 BBC</strong></p>
+</div>
+</div>
+
+
+
+  </div>
+
+
+      <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="/hive-ci/js/bootstrap.min.js">
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="/hive-ci/js/ie10-viewport-bug-workaround.js"></script>
+    
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-63228527-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</body>
+
+</html>

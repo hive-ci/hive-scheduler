@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Overview</title>
+  <meta name="description" content="Hive CI is a CI Platform for on-device testing. It encompasses a number ofapplications, tools and libraries that we use at the BBC for testing ourapplication...">
+
+  <link rel="stylesheet" href="/hive-ci/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/hive-ci/documentation/overview.html">
+  <link rel="alternate" type="application/rss+xml" title="Hive CI | CI for device testing" href="http://localhost:4000/hive-ci/feed.xml" />
+</head>
+
+
+
+  <body>
+    <div class="site-wrapper page-image">
+
+      <a id='top-of-page'></a>
+      <nav class="navbar navbar-default navbar-fixed-topx">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/hive-ci/index.html">
+        <img src="/hive-ci/images/hive-ci-simple.png" class="nav-logo pull-left" alt="Hive CI interface">
+      </a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/index.html">Home</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/hive-ci.html">Hive CI</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/hive-runner.html">Hive Runner</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/hivemind.html">Hive Mind</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/testmine.html">Test Mine</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/test-tools.html">Test Tools</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/documentation/hive-ci.html">Info</a>
+        </li>
+        
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+
+      <div class="row">
+
+      <div class="page-content">
+        <div class="col-xs-12 col-sm-2">
+          <ul class="nav nav-pills nav-stacked nav-compact">
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/hive-ci.html">Introduction</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/overview.html">Overview</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/setting-up-a-hive.html">Setting up a Hive</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/quick-start.html"> + Quick Start Guide</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/best-practices.html"> + Best Practices</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/examples.html"> + Examples</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/plugins-and-components.html">Plugins</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/android_plugin.html"> + Android Plugin</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/ios_plugin.html"> + iOS Plugin</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/tv_plugin.html"> + TV Plugin</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/device_api.html"> + Device API</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/software-links.html">Software Links</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/glossary.html">Glossary</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/faq.html">FAQ</a>
+                
+              </li>
+            
+          </ul>
+        </div>
+
+
+        <div class="col-xs-12  col-sm-9">
+        <h1>Overview</h1>
+        <p class="lead">Hive CI is a CI Platform for on-device testing. It encompasses a number of
+applications, tools and libraries that we use at the BBC for testing our
+applications and websites on devices.</p>
+
+<h2 id="setting-up-a-hive">Setting up a Hive</h2>
+
+<p>There are three main components that you will need to deploy to set up a Hive:</p>
+
+<ul>
+  <li>
+    <p><strong><em>Hive Scheduler</em></strong></p>
+
+    <p>This is the hive web application for scheduling tests and viewing results</p>
+  </li>
+  <li>
+    <p><strong><em>Hive Runner</em></strong></p>
+
+    <p>This is the component that detects devices and runs the tests. You can install
+runners on multiple machines and they will all run tests from the scheduler and
+report results back in.</p>
+  </li>
+  <li>
+    <p><strong><em>Hive Mind</em></strong></p>
+
+    <p>This is the device database. Though not essential for the running of Hive
+CI it enables better monitoring and control of devices.</p>
+  </li>
+</ul>
+
+<p>The complete setup containing these three components looks like this:</p>
+
+<p><img src="/hive-ci/images/full-hive-ci.png" alt="Hive CI overview" class="img-responsive" /></p>
+
+<p>Both Hive Scheduler and Hive Mind are web services that provide a web interface
+and an API for communicating with devices and hives. The Hive Runners, normally
+referred to simply as ‘Hives’ are servers to which the devices are connected.
+These may be located at multiple locations provided they are able to have a
+network connection to Hive Scheduler and Hive Mind.</p>
+
+<h3 id="hive-scheduler">Hive Scheduler</h3>
+
+<p>The scheduler is the main hive application. It contains the definitions of your
+tests and allows you to schedule those tests to run on devices that are connected
+to your runners.</p>
+
+<p>It is also where the results of your test runs are reported back.</p>
+
+<h3 id="hive-runner">Hive Runner</h3>
+
+<p>The Hive Runner, or Hive, is the component that executes the tests and submits
+results. It is also responsible for monitoring and looking after devices.</p>
+
+<p>The core of the Hive is the <code class="highlighter-rouge">hive-runner</code> gem and it is configured with one or
+more runner plugins depending on the device types that are to be connected.
+Currently there are plugins for:</p>
+
+<ul>
+  <li>Android mobile devices, from the <code class="highlighter-rouge">hive-runner-android</code> gem</li>
+  <li>iOS mobile devices, from the <code class="highlighter-rouge">hive-runner-ios</code> gem</li>
+  <li>TV and set top boxes, from the <code class="highlighter-rouge">hive-runner-tv</code> gem</li>
+  <li>Shell scripts, built into the core Hive Runner</li>
+</ul>
+
+<p><img src="/hive-ci/images/hive-runner-plugin.png" alt="Hive Runner top level" class="img-responsive" /></p>
+
+<p>Each plugin comprises a single controller that manages all devices of the
+particular type and workers for each device that are created as the devices
+are connected and terminated as they are disconnected.</p>
+
+<p><img src="/hive-ci/images/hive-runner-and-plugin-details.png" alt="Hive Runner top level" class="img-responsive" /></p>
+
+<p>When you install the runner, you will be guided to install additional gems to
+support the devices you want to test.</p>
+
+<h3 id="hivemind">HiveMind</h3>
+
+<p>Hive Mind is a database application for monitoring devices and device state.</p>
+
+<h3 id="testmine">Testmine</h3>
+
+<p>Testmine is an optional results engine for HiveCI. It is a seperate application
+that stores detailed reports of your test runs, and lets you investigate trends
+in test performance.</p>
+
+        <p><a href='#top-of-page'>Top</a></p>
+        </div>
+      </div>
+      </div>
+
+      <div class="row">
+<div class="col-xs-span-10 footer">
+  <p>BBC Hive is an Open Source BBC project licensed under MIT</p>
+  <p>This site is built with Jekyll and Bootstrap, and hosted on GitHub pages.</p>
+  <p><strong>&copy; 2015 BBC</strong></p>
+</div>
+</div>
+
+
+
+    </div>
+
+
+        <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="/hive-ci/js/bootstrap.min.js">
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="/hive-ci/js/ie10-viewport-bug-workaround.js"></script>
+    
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-63228527-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </body>
+</html>

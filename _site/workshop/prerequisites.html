@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Workshop prerequisites</title>
+  <meta name="description" content="Device-centric CI
+">
+
+  <link rel="stylesheet" href="/hive-ci/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/hive-ci/workshop/prerequisites.html">
+  <link rel="alternate" type="application/rss+xml" title="Hive CI | CI for device testing" href="http://localhost:4000/hive-ci/feed.xml" />
+</head>
+
+
+
+<body>
+  <div class="site-wrapper page-image">
+
+    <nav class="navbar navbar-default navbar-fixed-topx">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/hive-ci/index.html">
+        <img src="/hive-ci/images/hive-ci-simple.png" class="nav-logo pull-left" alt="Hive CI interface">
+      </a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/index.html">Home</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/hive-ci.html">Hive CI</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/hive-runner.html">Hive Runner</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/hivemind.html">Hive Mind</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/testmine.html">Test Mine</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/test-tools.html">Test Tools</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/documentation/hive-ci.html">Info</a>
+        </li>
+        
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+    <div class="row">
+      <div class="page-content">
+
+        <div class="col-xs-10 col-md-offset-1 col-xs-offset-1">
+          <h1 id="workshop-prerequisites">Workshop Prerequisites</h1>
+
+<p class="lead">This page contains information about software that needs to be installed in
+advance of the Hive Workshop or can be pre-installed to avoid time (and network
+problems). Suggested instructions are given for installing a Hive on Ubuntu but
+alternative methods may be used if desired (for example, <code class="highlighter-rouge">rbenv</code> in place of
+<code class="highlighter-rouge">rvm</code>).</p>
+
+<p>On Mac it might be necessary to install 
+<a href="/hive-ci/workshop/mac-preinstall.html">a few other things.</a></p>
+
+<h2 id="ruby">Ruby</h2>
+
+<p>The Hive requires Ruby version 2.0 or later. You can test the version of Ruby
+you have installed with:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">ruby -v</code></pre></figure>
+
+<p>If Ruby is not installed or the version is too old then it can be installed
+with <a href="https://rvm.io/rvm/install">RVM</a>:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># Install the latest version of Ruby with RVM</span>
+<span class="c"># (Approx 10 minutes)</span>
+gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+<span class="se">\c</span>url -sSL https://get.rvm.io | bash -s stable --ruby
+<span class="nb">source</span> <span class="nv">$HOME</span>/.rvm/scripts/rvm
+rvm install ruby-2.2.4
+gem install bundler</code></pre></figure>
+
+<p>Note, Ruby 2.3 can be used but some of the gems may need to be updated
+(<code class="highlighter-rouge">bundle update</code>)
+in the Rails applications.</p>
+
+<p>Some Ruby components will be installed during the workshop. This can be done in
+advance</p>
+
+<h2 id="downloading-hive-scheduler-and-hive-mind">Downloading Hive Scheduler and Hive Mind</h2>
+
+<p>Hive Scheduler and Hive Mind are Rails applications and can be
+downloaded from Github with one of the following three methods.</p>
+
+<h3 id="with-git">With Git</h3>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">mkdir hive
+<span class="nb">cd </span>hive
+
+git clone https://github.com/bbc/hive-scheduler
+git clone https://github.com/bbc/hive_mind</code></pre></figure>
+
+<h3 id="as-a-tarball-package">As a Tarball package</h3>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">mkdir hive
+<span class="nb">cd </span>hive
+
+<span class="c"># Download</span>
+curl -L -o hive-scheduler.tar.gz https://github.com/bbc/hive-scheduler/tarball/master
+curl -L -o hive_mind.tar.gz https://github.com/bbc/hive_mind/tarball/master
+
+<span class="c"># Unpack</span>
+tar -xzvf hive-scheduler.tar.gz
+tar -xzvf hive_mind.tar.gz
+
+<span class="c"># Change to sensible directory name</span>
+mv bbc-hive-scheduler<span class="k">*</span> hive-scheduler
+mv bbc-hive_mind<span class="k">*</span> hive_mind</code></pre></figure>
+
+<h3 id="as-a-zip-package">As a Zip package</h3>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">mkdir hive
+<span class="nb">cd </span>hive
+
+curl -L -o hive-scheduler.tar.gz https://github.com/bbc/hive-scheduler/zipball/master
+curl -L -o hive_mind.tar.gz https://github.com/bbc/hive_mind/zipball/master
+
+<span class="c"># Unpack</span>
+unzip hive-scheduler.zip
+unzip hive_mind.zip
+
+<span class="c"># Change to sensible directory name</span>
+mv bbc-hive-scheduler<span class="k">*</span> hive-scheduler
+mv bbc-hive_mind<span class="k">*</span> hive_mind</code></pre></figure>
+
+<h2 id="preparing-hive-scheduler-and-hive-mind">Preparing Hive Scheduler and Hive Mind</h2>
+
+<p>The Ruby gems required for the two Rails applications can be installed as shown
+below.</p>
+
+<p>For the workshop the development environment will be used and this does not
+require MySQL. To avoid installing the mysql2 Ruby Gem the
+‘–without production’ option is used. This can be removed if the mysql
+development libraries are installed.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># (About 5 minutes)</span>
+<span class="nb">cd </span>hive-scheduler
+bundle install --without production
+<span class="nb">cd</span> ..
+
+<span class="nb">cd </span>hive_mind
+bundle install --without production
+<span class="nb">cd</span> ..</code></pre></figure>
+
+<p>Note, ‘–without production’ will install without MySQL. If you
+have a MySQL server and the developer libraries installed then then this can be
+removed from both lines.</p>
+
+<h2 id="hive-runner">Hive Runner</h2>
+
+<p>The Hive Runner is installed as a gem:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">gem install hive-runner</code></pre></figure>
+
+<p>This is installed as part of the workshop but it can take some time so it is
+useful to install in advance.</p>
+
+<h2 id="java-mac">Java (Mac)</h2>
+
+<p>Install JDK for Mac with the instructions at
+<a href="http://docs.oracle.com/javase/7/docs/webnotes/install/mac/mac-jdk.html">http://docs.oracle.com/javase/7/docs/webnotes/install/mac/mac-jdk.html</a>.</p>
+
+<h2 id="java-ubuntu">Java (Ubuntu)</h2>
+
+<p>On Ubuntu, ADB requires Sun Java which can be installed as:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">sudo add-apt-repository ppa:webupd8team/java
+sudo apt-get update
+sudo apt-get install oracle-java7-installer
+sudo apt-get install oracle-java7-set-default</code></pre></figure>
+
+<h2 id="adb">ADB</h2>
+
+<p>To run Android tests you will need to have ADB installed. Note that the version
+that comes with Ubuntu will cause problems so use this instead:</p>
+
+<ul>
+  <li>Download the latet version of the SDK from <a href="http://developer.android.com/sdk/index.html">http://developer.android.com/sdk/index.html</a>. Ensure you install the
+command line tools.</li>
+  <li>Unzip and move to <code class="highlighter-rouge">/opt/adt/sdk</code></li>
+  <li>Run <code class="highlighter-rouge">/opt/adt/sdk/tools/android update sdk --no-ui</code> to download the platform
+tools. This will install all platforms and so may take a while.</li>
+  <li>Add the following environment variables into your <code class="highlighter-rouge">~/.bash_profile</code> (or
+equivalent):</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/opt/adt/sdk/tools
+<span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/opt/adt/sdk/platform-tools
+<span class="nb">export </span><span class="nv">ANDROID_HOME</span><span class="o">=</span>/opt/adt/sdk
+<span class="nb">export </span><span class="nv">ANDROID_SDK_HOME</span><span class="o">=</span>/opt/adt/sdk</code></pre></figure>
+
+<h2 id="javascript-ubuntu">Javascript (Ubuntu)</h2>
+
+<p>Rails requires a JavaScript runtime. For example,</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get install nodejs</code></pre></figure>
+
+<h2 id="set-up-for-calabash-tests">Set up for Calabash tests</h2>
+
+<p>Install Calabash:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">gem install calabash-android</code></pre></figure>
+
+
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+<div class="col-xs-span-10 footer">
+  <p>BBC Hive is an Open Source BBC project licensed under MIT</p>
+  <p>This site is built with Jekyll and Bootstrap, and hosted on GitHub pages.</p>
+  <p><strong>&copy; 2015 BBC</strong></p>
+</div>
+</div>
+
+
+
+  </div>
+
+
+      <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="/hive-ci/js/bootstrap.min.js">
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="/hive-ci/js/ie10-viewport-bug-workaround.js"></script>
+    
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-63228527-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</body>
+
+</html>

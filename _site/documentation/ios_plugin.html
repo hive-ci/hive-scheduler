@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>iOS Plugin</title>
+  <meta name="description" content="The iOS Hive Runner plugin is used for managing tests on iPhones and iPads. It can be more complicate to set up than the Android Runner as developer certific...">
+
+  <link rel="stylesheet" href="/hive-ci/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/hive-ci/documentation/ios_plugin.html">
+  <link rel="alternate" type="application/rss+xml" title="Hive CI | CI for device testing" href="http://localhost:4000/hive-ci/feed.xml" />
+</head>
+
+
+
+  <body>
+    <div class="site-wrapper page-image">
+
+      <a id='top-of-page'></a>
+      <nav class="navbar navbar-default navbar-fixed-topx">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/hive-ci/index.html">
+        <img src="/hive-ci/images/hive-ci-simple.png" class="nav-logo pull-left" alt="Hive CI interface">
+      </a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/index.html">Home</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/hive-ci.html">Hive CI</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/hive-runner.html">Hive Runner</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/hivemind.html">Hive Mind</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/testmine.html">Test Mine</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/test-tools.html">Test Tools</a>
+        </li>
+        
+        
+        
+        <li class="">
+          <a class="" href="/hive-ci/documentation/hive-ci.html">Info</a>
+        </li>
+        
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+
+      <div class="row">
+
+      <div class="page-content">
+        <div class="col-xs-12 col-sm-2">
+          <ul class="nav nav-pills nav-stacked nav-compact">
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/hive-ci.html">Introduction</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/overview.html">Overview</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/setting-up-a-hive.html">Setting up a Hive</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/quick-start.html"> + Quick Start Guide</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/best-practices.html"> + Best Practices</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/examples.html"> + Examples</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/plugins-and-components.html">Plugins</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/android_plugin.html"> + Android Plugin</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/ios_plugin.html"> + iOS Plugin</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/tv_plugin.html"> + TV Plugin</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/device_api.html"> + Device API</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/software-links.html">Software Links</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/glossary.html">Glossary</a>
+                
+              </li>
+            
+              <li role="presentation">
+                
+                  <a href="/hive-ci/documentation/faq.html">FAQ</a>
+                
+              </li>
+            
+          </ul>
+        </div>
+
+
+        <div class="col-xs-12  col-sm-9">
+        <h1>iOS Plugin</h1>
+        <p class="lead">The iOS Hive Runner plugin is used for managing tests on iPhones and iPads. It can be more complicate to set up than the Android Runner as developer certificates and provisioning profiles are required.</p>
+
+<h2 id="contents">Contents</h2>
+<ul>
+  <li><a href="#prerequisites">Prerequisites</a></li>
+  <li><a href="#installation">Installation</a></li>
+  <li><a href="#test-environment">Test environment</a></li>
+  <li><a href="#troubleshooting">Troubleshooting</a>
+    <ul>
+      <li><a href="#devices-are-not-detected">Devices are not detected</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="prerequisites">Prerequisites</h2>
+
+<p><a href="https://developer.apple.com/xcode/">XCode</a>, <a href="http://www.libimobiledevice.org/">libimobiledevice</a> and <a href="https://github.com/libimobiledevice/ideviceinstaller">ideviceinstaller</a> need to be installed as these are used for communicating with the attached devices. Note that the currently released version of <code class="highlighter-rouge">libimobiledevice</code> (1.2.0) no longer works with recent versions of XCode and so it is necessary to installed from Github using (for example) <code class="highlighter-rouge">brew install --HEAD libimobiledevice</code>.</p>
+
+<p>A developer certificate and provisioning profile are required to install and run apps on the device.</p>
+
+<p>To allow devices to be used in the Hive:</p>
+
+<ul>
+  <li>The device must have ‘Enable UI Automation’, under Settings -&gt; Developer, is enabled.</li>
+  <li>The device must be trusted.</li>
+</ul>
+
+<h2 id="installation">Installation</h2>
+
+<p>The Ruby gem for the iOS Hive plugin is <code class="highlighter-rouge">hive-runner-ios</code> and it can be added to an existing hive by adding</p>
+
+<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="n">gem</span> <span class="s1">'hive-runner-ios'</span>
+</code></pre>
+</div>
+
+<p>to <code class="highlighter-rouge">Gemfile</code> and executing <code class="highlighter-rouge">bundle install</code> while the Hive is stopped. Before restarting the Hive the following lines should be added to the <code class="highlighter-rouge">config/settings.yml</code> file inside the <code class="highlighter-rouge">controller</code> section:</p>
+
+<div class="language-yaml highlighter-rouge"><pre class="highlight"><code>    <span class="s">ios</span><span class="pi">:</span>
+      <span class="s">name_stub</span><span class="pi">:</span> <span class="s">IOS_WORKER</span>
+      <span class="s">port_range_size</span><span class="pi">:</span> <span class="s">10</span>
+      <span class="s">signing_identity</span><span class="pi">:</span> <span class="s1">'</span><span class="s">Your</span><span class="nv"> </span><span class="s">iPhone</span><span class="nv"> </span><span class="s">developer</span><span class="nv"> </span><span class="s">signing</span><span class="nv"> </span><span class="s">identity'</span>
+</code></pre>
+</div>
+
+<p>Alternatively, the iOS plugin can be included when setting up a new Hive. Select the option to ‘Add module’ and enter <code class="highlighter-rouge">ios</code> as the module name. You will need to add the <code class="highlighter-rouge">signing_identity</code> line to <code class="highlighter-rouge">config/settings.yml</code>, shown above, before starting the Hive.</p>
+
+<h2 id="test-environment">Test Environment</h2>
+
+<p>The following environment variables for use by test scripts executed by the
+iOS runner.</p>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">$BUNDLE_ID</code></td>
+      <td>The bundle id of the application</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">$APP_PATH</code></td>
+      <td>The path to the application bundle file (IPA)</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">$APP_BUNDLE_PATH</code></td>
+      <td>Alias for <code class="highlighter-rouge">$APP_PATH</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">$DEVICE_TARGET</code></td>
+      <td>Serial number of the device</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">$DEVICE_NAME</code></td>
+      <td>Name of the device</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">$PLATFORM_NAME</code></td>
+      <td>Set to <code class="highlighter-rouge">iOS</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">$PLATFORM_VERSION</code></td>
+      <td>iOS version</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">$DEVICE_ENDPOINT</code></td>
+      <td><code class="highlighter-rouge">http://&lt;device ip&gt;:37265</code> (Used by Calabash tests)</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">$CHARLES_PROXY_PORT</code></td>
+      <td>Port on the Hive available for use by the test</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">$APPIUM_PORT</code></td>
+      <td>Port on the Hive available for use by the test</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">$BOOTSTRAP_PORT</code></td>
+      <td>Port on the Hive available for use by the test</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">$CHROMEDRIVER_PORT</code></td>
+      <td>Port on the Hive available for use by the test</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The port variables are named for convenience of use with various testing
+frameworks but may be used by the test when any local ports are required.</p>
+
+<h2 id="troubleshooting">Troubleshooting</h2>
+
+<h3 id="devices-are-not-detected">Devices are not detected</h3>
+
+<p>For an iOS device to be detected by the Hive it needs to be listed by
+<code class="highlighter-rouge">idevice_id</code> and <code class="highlighter-rouge">ideviceinfo</code> must be able to list its information:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>idevice_id -l
+<span class="gp">$ </span>ideviceinfo -u &lt;udid of your device&gt;
+</code></pre>
+</div>
+
+<h4 id="problem-ideviceid-command-not-found">Problem: <code class="highlighter-rouge">idevice_id</code> command not found</h4>
+
+<p>Install <code class="highlighter-rouge">libimobiledevice</code>. For example, use <code class="highlighter-rouge">brew</code> on MacOS.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>brew install --HEAD libimobiledevice
+</code></pre>
+</div>
+
+<p>Note, the <code class="highlighter-rouge">--HEAD</code> option is required to get the latest version as the current release, 1.2.0, no longer works. See https://github.com/libimobiledevice/libimobiledevice/issues/380 for more details.</p>
+
+<h4 id="problem-ideviceinfo-does-not-return-device-information-or-returns-could-not-connect-to-lockdown">Problem: <code class="highlighter-rouge">ideviceinfo</code> does not return device information or returns “Could not connect to lockdown”</h4>
+
+<ul>
+  <li>The device must be trusted when the USB cable is attached</li>
+  <li>‘Enable UI Automation’ must be set. On the device open ‘Settings’ and open ‘Developer’.</li>
+</ul>
+
+<h4 id="problem-cannot-find-developer-settings-on-device">Problem: Cannot find ‘Developer’ settings on device</h4>
+
+<p>For iOS 10 and later the ‘Developer’ settings need to be enabled with XCode. With XCode running attach the device and the option will appear. If it does not, open the ‘Devices’ dialog from the Windows menu and select the device. On older versions of XCode there will be an option to enable the developer mode.</p>
+
+<p>This only needs to be done once for each device.</p>
+
+        <p><a href='#top-of-page'>Top</a></p>
+        </div>
+      </div>
+      </div>
+
+      <div class="row">
+<div class="col-xs-span-10 footer">
+  <p>BBC Hive is an Open Source BBC project licensed under MIT</p>
+  <p>This site is built with Jekyll and Bootstrap, and hosted on GitHub pages.</p>
+  <p><strong>&copy; 2015 BBC</strong></p>
+</div>
+</div>
+
+
+
+    </div>
+
+
+        <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="/hive-ci/js/bootstrap.min.js">
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="/hive-ci/js/ie10-viewport-bug-workaround.js"></script>
+    
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-63228527-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </body>
+</html>
