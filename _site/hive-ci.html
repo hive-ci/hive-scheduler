@@ -125,6 +125,19 @@
 </code></pre>
 </div>
 
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>cat <span class="sh">&lt;&lt;EOT &gt;&gt; ~/.zshrc
+export RAILS_ENV=production
+export DATABASE_HOST=localhost
+export DATABASE_USERNAME=&lt;username&gt;
+export DATABASE_PASSWORD=&lt;password&gt;
+export DATABASE_DATABASE=&lt;database name&gt;
+
+export HIVE_MIND_URL='http://&lt;host_ip&gt;:3001'
+export TEST_MINE_URL='http://&lt;host_ip&gt;:3002'
+EOT
+</span></code></pre>
+</div>
+
 <p>Set up the database and assets. If the database username is not <code class="highlighter-rouge">root</code> the first command will ask for the MySQL root password.</p>
 
 <div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>bundle <span class="nb">exec </span>rake setup

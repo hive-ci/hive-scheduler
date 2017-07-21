@@ -38,6 +38,19 @@ $ cd hive-ci
 $ bundle install --without development test
 ```
 
+``` bash
+cat <<EOT >> ~/.zshrc
+export RAILS_ENV=production
+export DATABASE_HOST=localhost
+export DATABASE_USERNAME=<username>
+export DATABASE_PASSWORD=<password>
+export DATABASE_DATABASE=<database name>
+
+export HIVE_MIND_URL='http://<host_ip>:3001'
+export TEST_MINE_URL='http://<host_ip>:3002'
+EOT
+```
+
 Set up the database and assets. If the database username is not `root` the first command will ask for the MySQL root password.
 
 ``` bash
