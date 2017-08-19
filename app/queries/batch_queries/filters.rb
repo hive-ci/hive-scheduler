@@ -7,7 +7,7 @@ module BatchQueries
 
     def scope
       scope = Batch.order(created_at: :desc)
-      scope = scope.where(project_id: project_ids) if project_ids.present? && project_ids != [""]
+      scope = scope.where(project_id: project_ids) if project_ids.present? && project_ids != ['']
       scope
     end
   end

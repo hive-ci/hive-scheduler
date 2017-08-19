@@ -4,19 +4,18 @@ class Job < ActiveRecord::Base
 
     def device_type
       if device_details['brand']
-        device_details['brand'] + " " + device_details['model']  
-      end 
+        device_details['brand'] + ' ' + device_details['model']
+      end
     end
 
     def device_name
       device_details['name']
     end
-    
+
     def device_details
       if device_id
         begin
           Rails.cache.fetch("device_#{device_id}", expires_in: 5.hours) do
-            
             connection = MindMeld::Device.new(
               url: Rails.application.config.hive_mind_url,
               pem: Rails.application.config.hive_mind_cert,
@@ -35,6 +34,5 @@ class Job < ActiveRecord::Base
         {}
       end
     end
-    
   end
 end

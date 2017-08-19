@@ -10,21 +10,20 @@ module JobCommands
       Hive::Messages::Job.new(job.attributes.merge(job_message_attributes))
     end
 
-
     private
 
     def job_message_attributes
       {
-          command:             command,
-          execution_variables: execution_variables,
-          job_id:              job_id,
-          repository:          repository,
-          branch:              branch,
-          execution_directory: execution_directory,
-          target:              target,
-          install_build:       install_build,
-          test_results:        test_results,
-          log_files:           log_files,
+        command:             command,
+        execution_variables: execution_variables,
+        job_id:              job_id,
+        repository:          repository,
+        branch:              branch,
+        execution_directory: execution_directory,
+        target:              target,
+        install_build:       install_build,
+        test_results:        test_results,
+        log_files:           log_files
       }
     end
 
@@ -54,9 +53,9 @@ module JobCommands
       end
       @execution_variables
     end
-    
+
     def retry_urns
-      job.retriable_test_cases.collect { |t| t.urn }.compact
+      job.retriable_test_cases.collect(&:urn).compact
     end
 
     def repository
@@ -69,7 +68,7 @@ module JobCommands
 
     def target
       target = batch.target_information || {}
-      target.merge!(build: api_batch_download_build_path(batch.id)) if script.requires_build?
+      target[:build] = api_batch_download_build_path(batch.id) if script.requires_build?
       target
     end
 

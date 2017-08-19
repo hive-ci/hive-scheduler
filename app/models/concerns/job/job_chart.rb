@@ -4,14 +4,13 @@ class Job < ActiveRecord::Base
 
     def chart_data
       data = {
-        :queued  => self.queued_count,
-        :running => self.running_count,
-        :passed  => self.passed_count,
-        :failed => self.failed_count,
-        :errored => self.errored_count
+        queued: queued_count,
+        running: running_count,
+        passed: passed_count,
+        failed: failed_count,
+        errored: errored_count
       }
-      Hive::ChartDataMangler.pie_result_data( data )
+      Hive::ChartDataMangler.pie_result_data(data)
     end
-
   end
 end

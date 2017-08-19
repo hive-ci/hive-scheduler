@@ -17,9 +17,9 @@ class Batch < ActiveRecord::Base
   after_initialize :copy_execution_variables
 
   def copy_execution_variables
-    if self.new_record? && self.project.present?
+    if new_record? && project.present?
       execution_variables = (self.execution_variables || {}).delete_if { |_, value| value.blank? }
-      self.execution_variables = (self.project.execution_variables || {}).merge(execution_variables)
+      self.execution_variables = (project.execution_variables || {}).merge(execution_variables)
     end
   end
 
@@ -32,8 +32,8 @@ class Batch < ActiveRecord::Base
   end
 
   def state
-    if !@state_cache
-      ordered_job_states = [:errored, :failed, :queued, :reserved, :retried, :preparing, :running, :analyzing, :passed, :complete, :cancelled]
+    unless @state_cache
+      ordered_job_states = %i[errored failed queued reserved retried preparing running analyzing passed complete cancelled]
       job_states         = latest_jobs.collect { |job| job.status.to_sym }.uniq
       job_states = job_states.sort_by { |state| ordered_job_states.index(state) }
       @state_cache = job_states.find do |state|
@@ -42,60 +42,59 @@ class Batch < ActiveRecord::Base
     end
     @state_cache
   end
-  
+
   def test_result_count_hash
-    if !@hash
-      @hash = job_groups.collect { |g| g.test_results.group_by {|tr| tr.test_case_id}.collect { |k,v| v.last } }.flatten.group_by { |t| t.status }
+    unless @hash
+      @hash = job_groups.collect { |g| g.test_results.group_by(&:test_case_id).collect { |_k, v| v.last } }.flatten.group_by(&:status)
       @hash['queued'] = @hash['notrun']
     end
     @hash
   end
-  
-  def active_job_states( state, result )
-    if !@active_job_states
+
+  def active_job_states(state, result)
+    unless @active_job_states
       @active_job_states = jobs.active.group('jobs.state').group('jobs.result').count
     end
     @active_job_states[[state, result]] || 0
   end
- 
+
   #
   # These methods provide a summary of the job statuses
   #
   def jobs_queued
-    active_job_states("queued", nil) + active_job_states("pending", nil)
+    active_job_states('queued', nil) + active_job_states('pending', nil)
   end
 
   def jobs_running
-    active_job_states( "preparing", nil ) + active_job_states( "running", nil ) + active_job_states( "analyzing", nil )
+    active_job_states('preparing', nil) + active_job_states('running', nil) + active_job_states('analyzing', nil)
   end
 
   def jobs_passed
-    active_job_states( "complete", "passed" )
+    active_job_states('complete', 'passed')
   end
 
   def jobs_failed
-    active_job_states( "complete", "failed" )
+    active_job_states('complete', 'failed')
   end
-  
+
   def jobs_errored
-    jobs.active.where("jobs.state='errored' or jobs.state='cancelled' or ( jobs.state='complete' and jobs.result='errored')" ).count
+    jobs.active.where("jobs.state='errored' or jobs.state='cancelled' or ( jobs.state='complete' and jobs.result='errored')").count
   end
-  
+
   def assets
-    self.batch_assets.map { |ba| ba.asset }
+    batch_assets.map(&:asset)
   end
 
   #
   # These methods give a total count of all tests in the batch
   #
-  [:queued, :running, :passed, :failed, :errored].each do |m|
+  %i[queued running passed failed errored].each do |m|
     define_method("tests_#{m}") do
       if !test_cases.empty?
         (test_result_count_hash[m.to_s] || []).count
-      else      
+      else
         jobs.active.sum("#{m}_count")
       end
     end
   end
-  
 end

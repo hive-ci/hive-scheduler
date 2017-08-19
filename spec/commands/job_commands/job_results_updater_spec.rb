@@ -1,19 +1,16 @@
-require "spec_helper"
+require 'spec_helper'
 
 module JobCommands
   describe JobResultsUpdater, type: :model do
-
-    describe "validations" do
+    describe 'validations' do
       it { should validate_presence_of(:job_id) }
     end
 
-    describe "instance methods" do
-
+    describe 'instance methods' do
       let(:reservation_command) { JobCommands::JobResultsUpdater.new(params) }
 
-      describe "#perform" do
-
-        context "job exists, old-style count reporting" do
+      describe '#perform' do
+        context 'job exists, old-style count reporting' do
           let(:job) { Fabricate(:job, running_count: 0, passed_count: 0, failed_count: 0, errored_count: 0) }
 
           let(:running_count) { 4 }
@@ -25,11 +22,11 @@ module JobCommands
 
           let!(:command_result) { reservation_command.perform }
 
-          it "returns the job" do
+          it 'returns the job' do
             expect(command_result).to eq job
           end
 
-          describe "the updated result counts" do
+          describe 'the updated result counts' do
             subject { job.reload }
 
             its(:running_count) { should eq running_count }
@@ -39,14 +36,12 @@ module JobCommands
           end
         end
 
-        context "job does not exist" do
+        context 'job does not exist' do
+          let(:params) { { job_id: -99 } }
 
-          let(:params) { { job_id: -99} }
-
-          it "does not catch any exceptions raised" do
+          it 'does not catch any exceptions raised' do
             expect { reservation_command.perform }.to raise_error(ActiveRecord::RecordNotFound)
           end
-          
         end
       end
     end

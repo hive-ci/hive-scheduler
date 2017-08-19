@@ -1,7 +1,6 @@
-require "spec_helper"
+require 'spec_helper'
 
 describe Job::JobValidations do
-
   let(:job) { Job.new }
   subject { job }
 

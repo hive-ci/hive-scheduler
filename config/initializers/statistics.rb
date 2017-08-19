@@ -6,7 +6,7 @@ Rails.application.config.statistics = {
 }
 
 if Chamber.env.statistics
-  [:queues, :projects].each do |type|
+  %i[queues projects].each do |type|
     if Chamber.env.statistics[type]
       # Chamber doesn't currently allow for an array to be set by environment
       # variables so use a comma separated list

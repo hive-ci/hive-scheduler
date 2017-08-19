@@ -1,12 +1,9 @@
 module Builders
-
   class NoBuildersRegisteredError < StandardError
   end
 
   class Registry
-
     class << self
-
       def registered_builders
         if @registered_builders.blank?
           Builders::Registry.register(Builders::TestRail) if Chamber.env.test_rail?

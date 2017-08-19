@@ -11,7 +11,7 @@
 #   Chamber.env.account_one.password or Chamber.env['account_one'].password
 
 m = /^TEST_RAIL_(.*)_USER$/
-ENV.keys.select { |x| m.match(x) }.map{ |x| m.match(x)[1] }.each do |a|
+ENV.keys.select { |x| m.match(x) }.map { |x| m.match(x)[1] }.each do |a|
   Chamber.env.test_rail = {
     a.downcase => {
       user: ENV["TEST_RAIL_#{a}_USER"],

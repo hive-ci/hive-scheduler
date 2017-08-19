@@ -1,10 +1,7 @@
 require 'spec_helper'
 
 describe Batch::BatchScopes do
-
-
-  describe "#latest_jobs" do
-
+  describe '#latest_jobs' do
     let(:batch) { Fabricate(:batch) }
 
     let(:original_job_one) { Fabricate(:job, batch: batch) }
@@ -18,7 +15,7 @@ describe Batch::BatchScopes do
 
     let!(:jobs_belonging_to_other_batches) { Fabricate.times(10, :job) }
 
-    it "returns the latest jobs only and discounts original jobs that have retries" do
+    it 'returns the latest jobs only and discounts original jobs that have retries' do
       expect(batch.latest_jobs).to match_array([job_one_retry, job_two_second_retry, job_three])
     end
   end

@@ -1,9 +1,7 @@
-require "spec_helper"
+require 'spec_helper'
 
 describe Builders::Validators::BuilderNameValidator do
-
-  describe "#validate_each" do
-
+  describe '#validate_each' do
     let(:model) do
       model_klass = Class.new do
         include ActiveModel::Validations
@@ -15,8 +13,7 @@ describe Builders::Validators::BuilderNameValidator do
       model_instance
     end
 
-
-    let(:stub_builder_name) { "stub_builder" }
+    let(:stub_builder_name) { 'stub_builder' }
     let(:stub_builder)      { double(Builders::Base, builder_name: stub_builder_name) }
     let(:validator)         { Builders::Validators::BuilderNameValidator.new(attributes: [:builder_name]) }
 
@@ -27,14 +24,14 @@ describe Builders::Validators::BuilderNameValidator do
 
     subject { model.errors[:builder_name] }
 
-    context "model has a valid builder_name" do
+    context 'model has a valid builder_name' do
       let(:model_builder_name) { stub_builder_name }
 
       it { should be_empty }
     end
 
-    context "model has an INVALID builder_name" do
-      let(:model_builder_name) { "invalid_builder_name" }
+    context 'model has an INVALID builder_name' do
+      let(:model_builder_name) { 'invalid_builder_name' }
 
       it { should_not be_empty }
     end

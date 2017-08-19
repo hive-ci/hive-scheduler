@@ -5,7 +5,7 @@ Fabricator(:job_group) do
 end
 
 Fabricator(:job_group_with_job, from: :job_group) do
-  after_create do |job_group, transients|
+  after_create do |job_group, _transients|
     job_group.jobs << Fabricate(:job, job_group: job_group)
   end
 end

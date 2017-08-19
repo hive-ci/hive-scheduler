@@ -1,7 +1,6 @@
-#https://github.com/radar/paranoia/issues/109#issuecomment-40121884
+# https://github.com/radar/paranoia/issues/109#issuecomment-40121884
 
 module Paranoia
-
   # Adds with_deleted to belongs_to
   module Associations
     def self.included(base)
@@ -50,7 +49,6 @@ module Paranoia
       end
     end
   end
-
 end
 
 ActiveRecord::Base.send :include, Paranoia::Associations

@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe Project do
-
   its(:paranoid?) { should be }
   it { should be_a(Project::ProjectValidations) }
   it { should be_a(Project::ProjectAssociations) }
@@ -10,38 +9,33 @@ describe Project do
   it { should serialize(:builder_options).as(::ActiveRecord::Coders::JSON) }
   it { should serialize(:execution_variables).as(::ActiveRecord::Coders::JSON) }
 
-  describe "delegates" do
+  describe 'delegates' do
     it { should delegate_method(:requires_build?).to(:script) }
     it { should delegate_method(:target).to(:script) }
   end
 
-  describe "instance methods" do
-
-    describe "#execution_variables_required" do
-
-      let(:project) { Project.new(script: script, builder_name: builder_name ) }
-      context "no script or builder has been set" do
-
-        let(:script) { nil }
+  describe 'instance methods' do
+    describe '#execution_variables_required' do
+      let(:project) { Project.new(script: script, builder_name: builder_name) }
+      context 'no script or builder has been set' do
+        let(:script)       { nil }
         let(:builder_name) { nil }
 
-        it "provides an empty array" do
+        it 'provides an empty array' do
           expect(project.execution_variables_required).to be_empty
         end
       end
 
-      context "an script has been set" do
-
+      context 'an script has been set' do
         let(:script) { Fabricate(:script) }
         let(:builder_name) { nil }
 
-        it "just provides the fields form the script" do
+        it 'just provides the fields form the script' do
           expect(project.execution_variables_required).to eq script.execution_variables
         end
       end
 
-      context "an script and a builder has been set" do
-
+      context 'an script and a builder has been set' do
         before(:each) do
           Builders::Registry.register(Builders::TestRail)
         end
@@ -50,14 +44,13 @@ describe Project do
         let(:builder_name) { builder.builder_name }
         let(:builder) { Builders::TestRail }
 
-        it "just provides the fields form the script and the builder" do
-          expect(project.execution_variables_required | Builders::TestRail.execution_variables_required).to eq (script.execution_variables | builder.execution_variables_required )
+        it 'just provides the fields form the script and the builder' do
+          expect(project.execution_variables_required | Builders::TestRail.execution_variables_required).to eq (script.execution_variables | builder.execution_variables_required)
         end
       end
     end
 
-    describe "#builder" do
-
+    describe '#builder' do
       before(:each) do
         Builders::Registry.register(Builders::TestRail)
         Builders::Registry.register(Builders::ManualBuilder)
@@ -65,7 +58,7 @@ describe Project do
 
       let(:project) { Project.new(builder_name: Builders::TestRail::Manifest::BUILDER_NAME) }
 
-      it "fetches the correct builder" do
+      it 'fetches the correct builder' do
         expect(project.builder).to eq(Builders::TestRail)
       end
 

@@ -1,7 +1,5 @@
 module BatchCommands
-
   class BuildBatchCommand < Imperator::Command
-
     attribute :project_id, Integer
     attribute :version, String
     attribute :build
@@ -11,10 +9,9 @@ module BatchCommands
     attribute :generate_name, Boolean, default: false
 
     validates_presence_of :project_id, :version
-    validates_presence_of :name, unless: lambda { |create_batch_command| create_batch_command.generate_name }
+    validates_presence_of :name, unless: ->(create_batch_command) { create_batch_command.generate_name }
 
     class << self
-
       def build(*args)
         new(*args).perform
       end
@@ -23,9 +20,8 @@ module BatchCommands
     action do
       batch = builder.batch_builder.build(batch_builder_arguments)
 
-      @assets.each do |asset|
-        BatchAsset.create batch: batch, asset: asset
-      end
+      @assets.map { |asset| BatchAsset.create batch: batch, asset: asset }
+
       batch
     end
 
@@ -37,12 +33,12 @@ module BatchCommands
 
     def batch_builder_arguments
       {
-          project_id:          project_id,
-          name:                new_name,
-          build:               save_build,
-          version:             version,
-          target_information:  target_information,
-          execution_variables: processed_execution_variables
+        project_id:          project_id,
+        name:                new_name,
+        build:               save_build,
+        version:             version,
+        target_information:  target_information,
+        execution_variables: processed_execution_variables
       }
     end
 
@@ -50,9 +46,7 @@ module BatchCommands
       @assets = []
       return @build if @build.nil?
 
-      if @build.is_a? ActionDispatch::Http::UploadedFile
-        @build = [@build]
-      end
+      @build = [@build] if @build.is_a? ActionDispatch::Http::UploadedFile
       @build.each do |b|
         asset = Asset.find_or_register(project_id: project_id, name: new_name, file: b.original_filename, version: version)
         asset.asset = b
@@ -67,16 +61,16 @@ module BatchCommands
     end
 
     def derived_name
-      # TODO revisit how this is generated to ensure thread safety and avoid potential collisions
+      # TODO: revisit how this is generated to ensure thread safety and avoid potential collisions
       project.name if generate_name
     end
 
     def processed_execution_variables
       if @processed_execution_variables.nil?
-        @processed_execution_variables = (self.execution_variables || {}).with_indifferent_access
-        array_variables               = @processed_execution_variables.slice(*execution_variables_to_be_processed_as_arrays)
+        @processed_execution_variables = (execution_variables || {}).with_indifferent_access
+        array_variables = @processed_execution_variables.slice(*execution_variables_to_be_processed_as_arrays)
         array_variables.each_pair do |key, value|
-          @processed_execution_variables[key] = value.is_a?(Array) ? value : value.split(",")
+          @processed_execution_variables[key] = value.is_a?(Array) ? value : value.split(',')
         end
       end
       @processed_execution_variables[:queues] = curated_queues unless @processed_execution_variables[:curated_queue].blank?

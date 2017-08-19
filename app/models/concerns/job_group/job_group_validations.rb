@@ -3,7 +3,6 @@ class JobGroup < ActiveRecord::Base
     extend ActiveSupport::Concern
 
     included do
-
       validates :batch, :name, presence: true
       validates_associated :batch
     end

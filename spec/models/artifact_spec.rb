@@ -1,10 +1,9 @@
 require 'spec_helper'
-require "paperclip/matchers"
+require 'paperclip/matchers'
 
 RSpec.configure do |config|
   config.include Paperclip::Shoulda::Matchers
 end
-
 
 describe Artifact do
   it { should belong_to(:job) }

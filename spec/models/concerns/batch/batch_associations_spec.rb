@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe Batch::BatchAssociations do
-
   let(:batch) { Batch.new }
   subject { batch }
 

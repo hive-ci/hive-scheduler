@@ -43,7 +43,7 @@
       <p><strong>Scheduled:</strong> <%= @batch.created_at.to_s(:short) %></p>
       <% if @batch.jobs.completed_without_error.count > 0 %>
           <p>
-            <strong>Testmine:</strong> <%= link_to("Results view", testmite_url(@batch.jobs.completed_without_error.first)) %>
+            <strong>Testmine:</strong> <%= link_to("Results view", testmine_url(@batch.jobs.completed_without_error.first)) %>
           </p>
       <% end %>
       <% if @batch.jobs.queued.count > 0 %>

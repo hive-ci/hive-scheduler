@@ -1,7 +1,6 @@
-require "spec_helper"
+require 'spec_helper'
 
 describe JobGroup::JobGroupAssociations do
-
   let(:job_group) { JobGroup.new }
   subject { job_group }
 

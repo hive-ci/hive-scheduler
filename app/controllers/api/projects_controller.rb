@@ -1,7 +1,7 @@
 class Api::ProjectsController < Api::ApiController
   include Roar::Rails::ControllerAdditions
   respond_to :json
-  
+
   def show
     @project = Project.find_by_id(params[:id])
     if @project.present?

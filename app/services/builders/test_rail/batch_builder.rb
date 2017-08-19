@@ -1,7 +1,6 @@
 module Builders
   class TestRail < Builders::Base
     class BatchBuilder < Builders::BatchBuilderBase
-
       def build_job_groups(batch)
         test_rail_runs.collect do |test_rail_run|
           Builders::TestRail::JobGroupBuilder.new(batch: batch, test_rail_run: test_rail_run).perform
@@ -25,11 +24,11 @@ module Builders
       end
 
       def test_rail_plan_id
-        project.builder_options["test_rail_plan_id"]
+        project.builder_options['test_rail_plan_id']
       end
 
       def test_rail_instance
-        project.builder_options["test_rail_instance"]
+        project.builder_options['test_rail_instance']
       end
 
       def project

@@ -1,31 +1,27 @@
 defaults: &defaults
-  # Settings may be over-ridden either in the section below (see the
-  # 'development' for examples) or with environment variables such as:
-  #
-  #    export DATABASE_ADAPTER=sqlite
   database:
     adapter: mysql2
     encoding: utf8
-    host: localhost
-    username: root
-    password:
-    database: hive_test
+    host: <%=ENV['DATABASE_HOST'] || 'localhost' %>
+    username: <%=ENV['DATABASE_USERNAME'] || 'root' %>
+    password: <%=ENV['DATABASE_PASSWORD']%>
+    database: <%=ENV['DATABASE_NAME'] || 'hive_ci' %>
     port: 3306
     pool: 5
   job_reservation_timeout: <%= 20.seconds %>
   stuck_running_jobs_timeout: <%= 5.hours %>
   maximum_auto_retries: 1
   hive_mind:
-    url:
-    cert: 
+    url: <%=ENV['HIVE_MIND_URL'] || 'http://localhost:3001' %>
+    cert:
     cacert:
     verify_mode:
-  testmite:
-    url: http://testmite.url
+  testmine:
+    url: <%=ENV['TEST_MINE_URL'] || 'http://localhost:3002' %>
   test_rail:
-    #testrail_account_one:
-    #  user:
-    #  password:
+    test_testrail_account:
+      user: test_testrail_username@example.com
+      password: test_testrail_password
     #testrail_account_two:
     #  user:
     #  password:
@@ -45,13 +41,10 @@ defaults: &defaults
 
 development:
   <<: *defaults
-  database:
-    adapter: sqlite3
-    database: db/test_database.sql
   better_errors_for_all: true
   hive_mind:
     url: http://localhost:3001
-  testmite:
+  testmine:
     url: http://localhost:3002
   attachment:
     storage: filesystem
@@ -61,12 +54,18 @@ development:
 test:
   <<: *defaults
   database:
-    adapter: sqlite3
-    database: db/test_database.sql
+    adapter: mysql2
+    encoding: utf8
+    host: <%=ENV['DATABASE_HOST'] || 'localhost' %>
+    username: <%=ENV['DATABASE_USERNAME'] || 'root' %>
+    password: <%=ENV['DATABASE_PASSWORD']%>
+    database: hive_ci_test
+    port: 3306
+    pool: 5
   better_errors_for_all: true
   hive_mind:
     url: http://localhost:3001
-  testmite:
+  testmine:
     url: http://localhost:3002
   test_rail:
     test_testrail_account:

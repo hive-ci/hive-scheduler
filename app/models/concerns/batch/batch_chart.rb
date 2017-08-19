@@ -4,14 +4,13 @@ class Batch < ActiveRecord::Base
 
     def chart_data
       data = {
-        :queued  => self.jobs_queued,
-        :running => self.jobs_running,
-        :passed  => self.jobs_passed,
-        :failed => self.jobs_failed,
-        :errored => self.jobs_errored
+        queued: jobs_queued,
+        running: jobs_running,
+        passed: jobs_passed,
+        failed: jobs_failed,
+        errored: jobs_errored
       }
-      Hive::ChartDataMangler.pie_result_data( data )
+      Hive::ChartDataMangler.pie_result_data(data)
     end
-
   end
 end

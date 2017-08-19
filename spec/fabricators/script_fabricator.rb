@@ -1,6 +1,6 @@
 module Fabricators
-  EXECUTION_TEMPLATE          = "execution template command"
-  CUCUMBER_EXECUTION_TEMPLATE = "cucumber execution template command"
+  EXECUTION_TEMPLATE          = 'execution template command'.freeze
+  CUCUMBER_EXECUTION_TEMPLATE = 'cucumber execution template command'.freeze
 end
 
 Fabricator(:script) do
@@ -18,6 +18,6 @@ end
 
 def cucumber_script
   # Always re-fetch the script in case its been deleted from the db
-  @cucumber_script = Script.find_by_id(@cucumber_script.id) if @cucumber_script.present?
+  @cucumber_script   = Script.find_by_id(@cucumber_script.id) if @cucumber_script.present?
   @cucumber_script ||= Fabricate(:cucumber_script)
 end

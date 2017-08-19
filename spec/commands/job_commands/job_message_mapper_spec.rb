@@ -1,14 +1,13 @@
-require "spec_helper"
+require 'spec_helper'
 
 describe JobCommands::JobMessageMapper, type: :model do
   include Rails.application.routes.url_helpers
 
-  describe "validations" do
+  describe 'validations' do
     it { should validate_presence_of(:job) }
   end
 
-  describe "#perform" do
-
+  describe '#perform' do
     before(:each) do
       Job.stub(publish_to_queue: nil)
     end
@@ -16,44 +15,42 @@ describe JobCommands::JobMessageMapper, type: :model do
 
     let(:job_attributes) do
       {
-          job_group:           job_group,
-          execution_variables: job_execution_variables
+        job_group:           job_group,
+        execution_variables: job_execution_variables
       }
     end
 
-
-    let(:script) { Fabricate(:script, execution_variables: [], template: File.read("spec/fixtures/files/erb_template.erb")) }
+    let(:script) { Fabricate(:script, execution_variables: [], template: File.read('spec/fixtures/files/erb_template.erb')) }
     let(:project) { Fabricate(:project, script: script) }
 
-    let(:batch) { Fabricate(:batch, project: project, target_information: {location_url: "http://www.bbc.co.uk"}, execution_variables: batch_execution_variables) }
-
+    let(:batch) { Fabricate(:batch, project: project, target_information: { location_url: 'http://www.bbc.co.uk' }, execution_variables: batch_execution_variables) }
 
     let(:job_group) { Fabricate(:job_group, batch: batch, execution_variables: job_group_execution_variables) }
 
     let(:all_execution_variables) do
-      all_execution_variables = base_execution_variables.
-          merge!(batch_execution_variables).
-          merge!(job_group_execution_variables).
-          merge!(job_execution_variables)
+      all_execution_variables = base_execution_variables
+                                .merge!(batch_execution_variables)
+                                .merge!(job_group_execution_variables)
+                                .merge!(job_execution_variables)
 
       project.builder.execution_variables_required.each do |field|
-        all_execution_variables[field.name.to_sym]=field.default_value
+        all_execution_variables[field.name.to_sym] = field.default_value
       end
 
       project.script.execution_variables.each do |field|
-        all_execution_variables[field.name.to_sym]=field.default_value
+        all_execution_variables[field.name.to_sym] = field.default_value
       end
 
       all_execution_variables
-
     end
     let(:base_execution_variables) { { version: batch.version.to_s, job_id: job.id, queue_name: job_group.queue_name } }
 
-    let(:batch_execution_variables) { { tests: %w(test1 test2) } }
-    let(:job_group_execution_variables) { { job_group_variable_one: "job_group_variable_one_value" } }
-    let(:job_execution_variables) { { job_variable_one: "job_variable_one_value", retry_urns: [], job_timeout: 300, :tests_per_job=>"10", :jobs_per_queue=>nil, :retries=>1,
-:curated_queue=>nil } }
-
+    let(:batch_execution_variables) { { tests: %w[test1 test2] } }
+    let(:job_group_execution_variables) { { job_group_variable_one: 'job_group_variable_one_value' } }
+    let(:job_execution_variables) do
+      { job_variable_one: 'job_variable_one_value', retry_urns: [], job_timeout: 300, tests_per_job: '10', jobs_per_queue: nil, retries: 1,
+        curated_queue: nil }
+    end
 
     let(:job_message_mapper) { JobCommands::JobMessageMapper.new(job: job) }
     let(:job_message) { job_message_mapper.perform }
@@ -62,13 +59,12 @@ describe JobCommands::JobMessageMapper, type: :model do
 
     it { should be_instance_of(Hive::Messages::Job) }
 
-    describe "job message attributes" do
-
-      it "does not parse erb in the execution script" do
+    describe 'job message attributes' do
+      it 'does not parse erb in the execution script' do
         expect(job_message.command).to eq '<%= marshal_dump.to_json %>'
       end
 
-      it "provides all the required execution_variables" do
+      it 'provides all the required execution_variables' do
         expect(job_message.execution_variables.to_hash).to eq all_execution_variables
       end
 
@@ -78,10 +74,9 @@ describe JobCommands::JobMessageMapper, type: :model do
       its(:target)              { should eq batch.target_information.stringify_keys.merge(build: api_batch_download_build_path(batch.id)) }
       its(:test_results)        { should eq job.test_results }
 
-      it "sets the job_id" do
+      it 'sets the job_id' do
         expect(job_message.job_id).to eq job.id
       end
     end
   end
 end
-

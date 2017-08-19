@@ -1,6 +1,6 @@
 module ProjectRepresenter
   include Roar::JSON
-  
+
   property :id
   property :name
   property :repository

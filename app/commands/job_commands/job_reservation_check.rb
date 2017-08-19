@@ -1,5 +1,4 @@
 module JobCommands
-
   class JobReservationCheck
     include SuckerPunch::Job
 

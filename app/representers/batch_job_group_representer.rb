@@ -1,11 +1,11 @@
 module BatchJobGroupRepresenter
   include Roar::JSON
-  
-  property :id  
-  property :name  
-  property :state  
+
+  property :id
+  property :name
+  property :state
   property :version
-  
+
   collection :job_groups do
     property :id
     property :queue_name
@@ -22,11 +22,8 @@ module BatchJobGroupRepresenter
       property :message
       property :exit_value
       property :status
-      
-      property :device_id, as: :device, getter: lambda { |args|
-        device_name
-      }
+
+      property :device_id, as: :device, getter: ->(_args) { device_name }
     end
   end
-  
 end

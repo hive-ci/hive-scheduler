@@ -1,7 +1,6 @@
 module Builders
   class TestRail < Builders::Base
     class JobGroupBuilder < Builders::JobGroupBuilderBase
-
       attribute :test_rail_run, ::TestRail::Run
 
       validates_presence_of :batch, :test_rail_run

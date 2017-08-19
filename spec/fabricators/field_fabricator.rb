@@ -4,9 +4,7 @@ Fabricator(:field) do
   field_type  { 'string' }
 end
 
-
 Fabricator(:cucumber_tags_field, from: :field) do
-  name        { "cucumber_tags" }
+  name        { 'cucumber_tags' }
   field_type  { 'string' }
 end
-

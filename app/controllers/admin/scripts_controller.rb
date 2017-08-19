@@ -1,12 +1,11 @@
 class Admin::ScriptsController < Admin::AdminController
-  before_filter :set_exec_type, only: [:show, :edit, :update, :destroy]
+  before_filter :set_exec_type, only: %i[show edit update destroy]
 
   def index
     @scripts = Script.all.reverse
   end
 
-  def show;
-  end
+  def show; end
 
   def new
     @script = Script.new
@@ -22,8 +21,7 @@ class Admin::ScriptsController < Admin::AdminController
     end
   end
 
-  def edit;
-  end
+  def edit; end
 
   def update
     if @script.update(exec_type_params)
@@ -41,13 +39,13 @@ class Admin::ScriptsController < Admin::AdminController
 
   def exec_type_params
     params.require(:script).permit(
-        :target_id,
-        :name,
-        :template,
-        :install_build,
-        :requires_build,
-        target_fields_attributes: [:id, :name, :field_type, :_destroy],
-        execution_variables_attributes: [:id, :name, :field_type, :_destroy]
+      :target_id,
+      :name,
+      :template,
+      :install_build,
+      :requires_build,
+      target_fields_attributes: %i[id name field_type _destroy],
+      execution_variables_attributes: %i[id name field_type _destroy]
     )
   end
 end
