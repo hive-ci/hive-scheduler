@@ -1,10 +1,11 @@
 source 'https://rubygems.org'
 
 gem 'rails', '~> 4.1.6'
-gem 'state_machine'
+
+gem 'autoprefixer-rails'
 gem 'jquery-rails'
 gem 'sass-rails', '~> 4.0.0'
-gem 'autoprefixer-rails'
+gem 'state_machine'
 
 gem 'mysql2', '~> 0.3.18'
 
@@ -15,8 +16,8 @@ gem 'select2-rails'
 
 gem 'will_paginate', '~> 3.0'
 
-gem 'paperclip'
 gem 'aws-sdk', '~> 1.6'
+gem 'paperclip'
 
 gem 'chamber'
 
@@ -25,40 +26,41 @@ gem 'd3-rails', '~> 3.5'
 
 gem 'omniauth'
 
-gem 'test_rail-api', '~> 0.4', require: 'test_rail'
-gem 'mind_meld', '~> 0.1'
 gem 'hive-messages', '~> 1.0', '>=1.0.7'
+gem 'mind_meld', '~> 0.1'
+gem 'test_rail-api', '~> 0.4', require: 'test_rail'
 
 gem 'jbuilder'
 
-gem 'imperator'
 gem 'cocoon'
-gem 'simple_form', '~> 3.4'
+gem 'imperator'
 gem 'js-routes'
+gem 'simple_form', '~> 3.4'
 gem 'thin'
 
-gem 'roar-rails'
+gem 'cachethod', '~> 0.2.0'
+gem 'default_value_for', '~> 3.0.0'
+gem 'image-picker-rails'
 gem 'paranoia', '~> 2.0.2'
+gem 'roar-rails'
 gem 'settingslogic'
 gem 'sucker_punch', '~> 1.0'
-gem 'default_value_for', '~> 3.0.0'
-gem 'cachethod', '~> 0.2.0'
-gem 'image-picker-rails'
 gem 'whenever', '~> 0.9', require: false
 
 group :development, :test do
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'rspec-rails', '2.14.2'
+  gem 'codeclimate-test-reporter', require: nil
+  gem 'database_cleaner'
   gem 'fabrication', '< 2.11.0'
-  gem 'shoulda-matchers', require: false
   gem 'forgery'
+  gem 'overcommit'
+  gem 'pry-byebug'
+  gem 'rspec-rails', '2.14.2'
   gem 'shoulda-callback-matchers', '~> 1.0'
+  gem 'shoulda-matchers', require: false
   gem 'test_after_commit'
   gem 'timecop'
-  gem 'database_cleaner'
-  gem 'pry-byebug'
-  gem 'codeclimate-test-reporter', require: nil
 end
 
 # Deprecated method used by other gems
