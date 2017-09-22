@@ -47,7 +47,7 @@ else
 
   # Convert the JUnit result file into RES format for uploading to the Hive
   res --junit build/reports/junit.xml
-end
+fi
 
 # Copy all results files to the results directory for uploading
 cp raw_output.txt xcpretty.out *.res $HIVE_RESULTS
