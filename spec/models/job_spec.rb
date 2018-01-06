@@ -58,8 +58,8 @@ describe Job do
     describe '#can_cancel?' do
       let(:job) { Fabricate(:job, state: job_state, result: job_result) }
 
-      context 'job is in a running state' do
-        let(:job_state) { 'running' }
+      context 'job is in a complete state' do
+        let(:job_state) { 'complete' }
         let(:job_result) { nil }
 
         it 'can NOT be cancelled' do
@@ -168,7 +168,13 @@ describe Job do
       let(:errored_count) { 3 }
       let(:original_retry_count) { 4 }
 
-      let(:job) { Fabricate(:job, passed_count: passed_count, failed_count: failed_count, errored_count: errored_count, retry_count: original_retry_count) }
+      let(:job) do
+        Fabricate(:job,
+                  passed_count: passed_count,
+                  failed_count: failed_count,
+                  errored_count: errored_count,
+                  retry_count: original_retry_count)
+      end
 
       context 'job can NOT be retried' do
         let(:can_retry) { false }

@@ -92,7 +92,7 @@
             <%= content_tag_for(:tr, jobs, class: 'active') do |job| %>
                 <td>
                   <% if job.original_job %>
-                      <%= link_to "<span class='glyphicon glyphicon-chevron-up'></span> (retry)".html_safe, job_path(job) %>
+                      <%= link_to "<span class='glyphicon glyphicon-chevron-up'></span> ##{job.id}".html_safe, job_path(job) %>
                   <% else %>
                       <%= link_to "##{job.id}", job_path(job) %>
                   <% end %>

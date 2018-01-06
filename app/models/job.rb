@@ -92,10 +92,11 @@ class Job < ActiveRecord::Base
   end
 
   def can_cancel?
-    %w[queued reserved].include?(status)
+    %w[queued reserved running].include?(status)
   end
 
-  # TODO: replace this with a more elegant and non tests or test_rail specific implementation e.g: something that can deal with cuke tags, etc, also
+  # TODO: replace this with a more elegant and non tests or test_rail specific
+  # implementation e.g: something that can deal with cuke tags, etc, also
   # will leave until further requirements and design is understood
   def tests
     execution_variables['tests']
@@ -107,7 +108,8 @@ class Job < ActiveRecord::Base
 
   private
 
-  # TODO: replace this with a more elegant and non tests or test_rail specific implementation e.g: something that can deal with cuke tags, etc, also
+  # TODO: replace this with a more elegant and non tests or test_rail specific
+  # implementation e.g: something that can deal with cuke tags, etc, also
   # will leave until further requirements and design is understood
   def run_id
     job_group.execution_variables['run_id']

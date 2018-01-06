@@ -160,6 +160,7 @@ GEM
     overcommit (0.40.0)
       childprocess (~> 0.6, >= 0.6.3)
       iniparse (~> 1.4)
+    ox (2.8.2)
     paperclip (4.3.7)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -196,6 +197,11 @@ GEM
     rake (11.3.0)
     representable (2.3.0)
       uber (~> 0.0.7)
+    res (1.2.20)
+      hive-messages (~> 1)
+      json (~> 1.8)
+      ox (~> 2.2)
+      test_rail-api (~> 0.4)
     responders (1.1.2)
       railties (>= 3.2, < 4.2)
     roar (1.0.4)
@@ -320,6 +326,7 @@ DEPENDENCIES
   pry-byebug
   rails (~> 4.1.6)
   rake (< 12.0)
+  res
   roar-rails
   rspec-rails (= 2.14.2)
   sass-rails (~> 4.0.0)
@@ -338,4 +345,4 @@ DEPENDENCIES
   will_paginate (~> 3.0)
 
 BUNDLED WITH
-   1.15.3
+   1.16.1
